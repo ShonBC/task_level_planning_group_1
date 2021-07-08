@@ -1,6 +1,6 @@
 ENPM809E - Python Applications for Robotics
 
-Group 1 Souvik Pramanik, Brenda Scheufele, Shon Cortes
+Group 1: Souvik Pramanik, Brenda Scheufele, Shon Cortes
 
 July 10, 2021
 
