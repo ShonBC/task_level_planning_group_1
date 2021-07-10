@@ -40,10 +40,6 @@ class Industrial():
     @property 
     def company(self):
         return self._company
-
-    @name.setter
-    def payload(self, payload):
-        self._payload = payload
     
     @application.setter
     def application(self, application):
