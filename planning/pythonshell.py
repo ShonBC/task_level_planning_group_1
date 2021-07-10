@@ -6,6 +6,9 @@ import subprocess
 # Shon's Test file path
 planner_folder = '/home/luna/Desktop/popf-tif-clp/planner/debug/popf'
 
+# Souvik's Test file path
+# planner_folder = '/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner
+
 # domain file
 domain_file = planner_folder + '/rwa2-domain.pddl'
 # problem file
