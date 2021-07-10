@@ -7,13 +7,13 @@ system_tracker = {"bins": {"red battery": {"parts": 0, "location": 1}, "blue bat
                   "kit":  {"red battery": 0, "blue battery": 0, "blue sensor": 0, "green regulator": 0},
                   "kit total": 0}
 
-
+# Will iterate through list and return whether the entry entered is in the list
 def iterate(bin_no: list, entry):
     for elt in bin_no:
         if elt == entry:
             return True
 
-
+# Will modify the bin in the bin_no tuple and return it. 
 def modify_bin(bin_no: tuple, entry: int):
     bin_no = list(bin_no)
     bin_no.remove(entry)
@@ -50,21 +50,22 @@ def user_inputs():
         system_tracker["bins"]["blue sensor"]["parts"] = blue_sensor
         system_tracker["bins"]["green regulator"]["parts"] = green_regulator
     
-    bin_no = (1, 2, 3, 4, 5, 6, 7, 8)         # Created for display purposes shown below. 
+    bin_no = (1, 2, 3, 4, 5, 6, 7, 8)         # Tuple created for display purposes shown below. 
     if int(red_battery) > 0:      # Question will only be asked if number of red batteries is greater than 0.
         proper_entry = False
         while not proper_entry:
             red_bat_bin = input(f"Q2. Bin for red batteries {bin_no}: ")
             if red_bat_bin.isdigit() and 1 <= int(red_bat_bin) < 9:
                 proper_entry = True
-                bin_no = modify_bin(bin_no, int(red_bat_bin))
+                bin_no = modify_bin(bin_no, int(red_bat_bin))      # Will remove the user input entered from the tuple. 
 
 
             else:
                 try_again(bin_no)
 
-        system_tracker["bins"]["red battery"]["location"] = red_bat_bin
-
+        system_tracker["bins"]["red battery"]["location"] = red_bat_bin    # Stores bin_no entry in bins red battery location key.
+    
+    # Prompts the same questions for blue battery, blue sensor and green regulators.
     if int(blue_battery) > 0:
         proper_entry = False
         while not proper_entry:
@@ -103,9 +104,9 @@ def user_inputs():
 
         bin_no = modify_bin(bin_no, int(green_reg_bin))
         system_tracker["bins"]["green regulator"]["location"] = green_reg_bin
-
+   
     proper_entry = False
-    agv_location = "agv"
+    agv_location = "agv"      # Used to concatenate with the agv number mentioned in the 
     while not proper_entry:
         agv_no = input("Q6. AGV to use for kitting [1-4]: ")
         if agv_no.isdigit() and 1 <= int(agv_no) < 5:
@@ -158,8 +159,8 @@ def user_inputs():
         if red_bat_kit.isdigit() and blue_bat_kit.isdigit() and blue_sen_kit.isdigit() and green_reg_kit.isdigit():
             if 0 <= int(red_bat_kit) < 6 and 0 <= int(blue_bat_kit) < 6 and 0 <= int(blue_sen_kit) < 6 and 0 <= \
                     int(green_reg_kit) < 6:
-                if int(red_bat_kit) < int(red_battery) and int(blue_bat_kit) < int(blue_battery) and \
-                        int(blue_sen_kit) < int(blue_sensor) and int(green_reg_kit) < int(green_regulator):
+                if int(red_bat_kit) <= int(red_battery) and int(blue_bat_kit) <= int(blue_battery) and \
+                        int(blue_sen_kit) <= int(blue_sensor) and int(green_reg_kit) <= int(green_regulator):
                     proper_entry = True
                 else:
                     print("Please Try Again. Number of parts entered exceeds number of available parts in bin.")
