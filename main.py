@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     # Instantiate ground and gantry robots
     ground_robot_obj = ground.Ground('ground robot', 2.0, ['s', 'a'], 1.0, 'NIST')
-    gantry_robot_obj = gantry.Gantry('Shon', 2.0, ['s', 'a'], 1.0, 2.0, 10, 11, 'NIST')
+    gantry_robot_obj = gantry.Gantry('gantry robot', 2.0, ['s', 'a'], 1.0, 2.0, 10, 11, 'NIST')
 
     # Take user inputs
     task.user_inputs()
