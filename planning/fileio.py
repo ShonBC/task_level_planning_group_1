@@ -138,6 +138,19 @@ def update_problem_states(user_inputs_file):
         if 'problem rwa2-problem'in output_list[i]:
             output_list[i] = '(define (problem rwa2-updated-problem)\n'
 
+def generate(input_file_path, output_file_path):
+    """Generate the plan list and save a new updated pddl file.
+
+    Args:
+        input_file_path ([type]): File path to pddl problem file
+        output_file_path ([type]): File path to updated pddl problem file
+    """
+
+    system_tracker = task.user_inputs()
+    output_list = read_file(input_file_path)
+    update_problem_states(system_tracker)
+    write_new_problem_file(output_file_path)
+
 
 if __name__ == '__main__':
     system_tracker = task.user_inputs()
