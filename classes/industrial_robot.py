@@ -1,11 +1,20 @@
 
 
-class industrial_Robot:
-    def __init__(self, name: str, payload: float, appl: list(), company="NIST"):
-        """
+class industrial_Robot():
+    """Industrial Robot base class.
+    Initialize with the robot name, payload, application, and company.
+    """
 
-        :type payload: object
+    def __init__(self, name: str, payload: float, appl: list(), company="NIST"):
+        """Initialize class attributes. 
+
+        Args:
+            name (str): Name of the robot. This attribute canonly be accessed outside the class definition and cannot be set.
+            payload (float): Payload for the robot’s arm(s). This attribute can be both accessed and set outside the class definition.
+            appl (list): List of applications the robot can perform. For instance,gantry_robot can do both kitting and assembly while ground_robot can only do kitting. This attribute can be both accessed and set outside the class definition.
+            company (str, optional): Name of the robot’s vendor. By default this is set to "Nist". This attribute canonly be accessed outsidethe class definition and cannot be set.  Defaults to 'NIST'.
         """
+        
         self.appl = appl
         self.payload = payload
         self._name = name
