@@ -1,6 +1,6 @@
 
 
-class industrial_Robot():
+class Industrial_Robot():
     """Industrial Robot base class.
     Initialize with the robot name, payload, application, and company.
     """
@@ -25,43 +25,43 @@ class industrial_Robot():
         return self._name
 
 
-def pick_up(parttype: str, bin: str):
-    print(f"industrial robot picks up {parttype} from {bin}")
+    def pick_up(parttype: str, bin: str):
+        print(f"industrial robot picks up {parttype} from {bin}")
 
 
-def put_down(parttype: str, agv: str):
-    print(f"industrial robot puts down {parttype} in {agv}")
+    def put_down(parttype: str, agv: str):
+        print(f"industrial robot puts down {parttype} in {agv}")
 
 
-def attach_gripper(gripper: str):
-    print(f"industrial robot attaching {gripper}")
+    def attach_gripper(gripper: str):
+        print(f"industrial robot attaching {gripper}")
 
 
-def detach_gripper(gripper: str):
-    print(f"industrial robot detaching {gripper}")
+    def detach_gripper(gripper: str):
+        print(f"industrial robot detaching {gripper}")
 
 
-def move_to_bin(bin: str):
-    print(f"moving to {bin}")
+    def move_to_bin(bin: str):
+        print(f"moving to {bin}")
 
-def move_to_agv(agv: str):
-    print(f"moving to {agv}")
-
-
-def move_to_gripper_station(station: str):
-    print(f"moving to gripper station {station}")
+    def move_to_agv(agv: str):
+        print(f"moving to {agv}")
 
 
-def move_from_bin(bin: str):
-    print(f"moving from {bin}")
+    def move_to_gripper_station(station: str):
+        print(f"moving to gripper station {station}")
 
 
-def move_from_agv(agv: str):
-    print(f"moving from {agv}")
+    def move_from_bin(bin: str):
+        print(f"moving from {bin}")
 
 
-def move_from_gripper_station(station: str):
-    print(f"moving from gripper station {station}")
+    def move_from_agv(agv: str):
+        print(f"moving from {agv}")
+
+
+    def move_from_gripper_station(station: str):
+        print(f"moving from gripper station {station}")
 
 
 if __name__ == '__main__':

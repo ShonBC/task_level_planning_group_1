@@ -1,7 +1,7 @@
-from industrial_robot import industrial_Robot
+from industrial_robot import Industrial_Robot
 
 
-class Gantry(industrial_Robot):
+class Gantry(Industrial_Robot):
     def __init__(self, name: str, payload: float, appl: list(), company: str, 
                  small_rail_length: float, long_rail_length: float, 
                  small_rail_velocity: float, long_rail_velocity: float):
