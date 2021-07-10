@@ -139,10 +139,17 @@ def update_problem_states(user_inputs_file):
 
 
 if __name__ == '__main__':
+    # # absolute path to the PDDL problem file
+    # input_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
+    # # absolute path to the new PDDL problem file
+    # output_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
+    
+    # Shon's Test file path
     # absolute path to the PDDL problem file
-    input_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
+    input_file_path = "/home/luna/Desktop/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
     # absolute path to the new PDDL problem file
-    output_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
+    output_file_path = "/home/luna/Desktop/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
+
     output_list = read_file(input_file_path)
     update_problem_states(system_tracker)
     write_new_problem_file(output_file_path)

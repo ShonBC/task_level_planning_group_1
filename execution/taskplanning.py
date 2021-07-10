@@ -1,3 +1,6 @@
+    """Takes user inputs to initialize planning environment
+    """
+    
 import fileio
 import industrial_robot
 import ground

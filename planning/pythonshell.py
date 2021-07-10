@@ -1,7 +1,11 @@
 import subprocess
 
 # root directory of the planner
-planner_folder = '/home/brenda/Desktop/popf-tif-clp/planner/debug/popf'
+# planner_folder = '/home/brenda/Desktop/popf-tif-clp/planner/debug/popf'
+
+# Shon's Test file path
+planner_folder = '/home/luna/Desktop/popf-tif-clp/planner/debug/popf'
+
 # domain file
 domain_file = planner_folder + '/rwa2-domain.pddl'
 # problem file
