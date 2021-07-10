@@ -1,5 +1,9 @@
 # from task_level_planning_group_1.execution 
 import taskplanning as task
+import planning.fileio
+import classes.industrial_robot as industrial
+import classes.ground_robot as ground
+import classes.gantry_robot as gantry
 
 # def read_plan():
 
