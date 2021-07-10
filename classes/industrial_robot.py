@@ -1,76 +1,159 @@
+'''
+Industrial Robot base class.
+'''
 
-
-class Industrial_Robot():
+class Industrial():
     """Industrial Robot base class.
     Initialize with the robot name, payload, application, and company.
     """
-
-    def __init__(self, name: str, payload: float, appl: list(), company="NIST"):
+   
+    def __init__(self, name: str, payload: float, application: list, company = 'NIST'):
         """Initialize class attributes. 
 
         Args:
             name (str): Name of the robot. This attribute canonly be accessed outside the class definition and cannot be set.
             payload (float): Payload for the robot’s arm(s). This attribute can be both accessed and set outside the class definition.
-            appl (list): List of applications the robot can perform. For instance,gantry_robot can do both kitting and assembly while ground_robot can only do kitting. This attribute can be both accessed and set outside the class definition.
+            application (list): List of applications the robot can perform. For instance,gantry_robot can do both kitting and assembly while ground_robot can only do kitting. This attribute can be both accessed and set outside the class definition.
             company (str, optional): Name of the robot’s vendor. By default this is set to "Nist". This attribute canonly be accessed outsidethe class definition and cannot be set.  Defaults to 'NIST'.
         """
-        
-        self.appl = appl
-        self.payload = payload
+       
         self._name = name
-        self.company = company
+        self._payload = payload
+        self._application = application
+        self._company = company
+
+    def __str__(self):
+        return f'Name: {self._name}, Payload: {self._payload}, Application: {self._application}, Company: {self._company}'
 
     @property
     def name(self):
         return self._name
+    
+    @property
+    def payload(self):
+        return self._payload
 
+    @property
+    def application(self):
+        return self._application
 
-    def pick_up(parttype: str, bin: str):
-        print(f"industrial robot picks up {parttype} from {bin}")
+    @property 
+    def company(self):
+        return self._company
 
+    @name.setter
+    def payload(self, payload):
+        self._payload = payload
+    
+    @application.setter
+    def application(self, application):
+        self.application = application
+        
+    def pick_up(self, parttype: str, bin: str):
+        """Print the part type picked up and the bin it was obtained from.
 
-    def put_down(parttype: str, agv: str):
-        print(f"industrial robot puts down {parttype} in {agv}")
+        Args:
+            parttype (str): Four part types are available in the environment, red_battery, blue_battery, green_regulator, and blue_sensor.
+            bin (str): Parts are stored in bins 1-8.
+        """
 
+        print(f'robot picks up {parttype} from {bin}')
 
-    def attach_gripper(gripper: str):
-        print(f"industrial robot attaching {gripper}")
+    def put_down(self, parttype: str, agv: str):
+        """Print the part type put down and the agv it was placed in.
 
+        Args:
+            parttype (str): Four part types are available in the environment, red_battery, blue_battery, green_regulator, and blue_sensor.
+            agv (str): Automated Guided Vehicle used to transport parts to kitting station.
+        """
 
-    def detach_gripper(gripper: str):
-        print(f"industrial robot detaching {gripper}")
+        print(f'robot puts down {parttype} from {agv}')
 
+    def attach_gripper(self, gripper: str):
+        """Print the gripper the robot has attached.
 
-    def move_to_bin(bin: str):
-        print(f"moving to {bin}")
+        Args:
+            gripper (str): Robots can use 2 grippers: A vacuum gripper (vacuum_gripper) and a 3-finger gripper (finger_gripper).
+        """
 
-    def move_to_agv(agv: str):
-        print(f"moving to {agv}")
+        print(f'robot attaches {gripper}')
 
+    def detach_gripper(self, gripper: str):
+        """Print the gripper the robot has detached.
 
-    def move_to_gripper_station(station: str):
-        print(f"moving to gripper station {station}")
+        Args:
+            gripper (str): Robots can use 2 grippers: A vacuum gripper (vacuum_gripper) and a 3-finger gripper (finger_gripper).
+        """
 
+        print(f'robot detaches {gripper}')
 
-    def move_from_bin(bin: str):
-        print(f"moving from {bin}")
+    def move_to_bin(self, bin:str): 
+        """Print the bin the robot has moved to.
 
+        Args:
+            bin (str): Parts are stored in bins 1-8.
+        """
 
-    def move_from_agv(agv: str):
-        print(f"moving from {agv}")
+        print(f'robot moves to {bin}')
 
+    def move_to_agv(self, agv: str): 
+        """Print the AGV the robot has moved to.
 
-    def move_from_gripper_station(station: str):
-        print(f"moving from gripper station {station}")
+        Args:
+            agv (str): Automated Guided Vehicle used to transport parts to kitting station.
+        """
 
+        print(f'robot moves to {agv}')
+
+    def move_to_gripper_station(self, station: str): 
+        """Print the robot has moved to the gripper station.
+
+        Args:
+            station (str): Gripper changing station. The robot must move here to change grippers.
+        """
+
+        print(f'robot moves to {station}')
+
+    def move_from_bin(self, bin: str): 
+        """Print the bin the robot is moving from.
+
+        Args:
+            bin (str): Parts are stored in bins 1-8.
+        """
+
+        print(f'robot moves from {bin}')
+
+    def move_from_agv(self, agv: str): 
+        """Print the AGV the robot is moving from.
+
+        Args:
+            agv (str): Automated Guided Vehicle used to transport parts to kitting station.
+        """
+
+        print(f'robot moves from {agv}')
+
+    def move_from_gripper_station(self, station: str): 
+        """Print the robot is moving from the gripper changing station.
+
+        Args:
+            station (str): Gripper changing station. The robot must move here to change grippers.
+        """
+
+        print(f'robot moves from {station}')
 
 if __name__ == '__main__':
-    indus_robot_obj = industrial_Robot("robot1", 1.0, [])
-    print(indus_robot_obj._name)
-    print(indus_robot_obj.appl)
-    print(indus_robot_obj.company)
-    print(indus_robot_obj.payload)
-    indus_robot_obj.move_from_agv("agv1")
+    robot = Industrial('Shon', 1.2, ['s', 'd'])
+    print(robot)
+    robot.pick_up('red battery', 'bin 1')
+    robot.put_down('red battery', 'bin 1')
+    robot.attach_gripper('three_finger')
+    robot.detach_gripper('three_finger')
+    robot.move_to_bin('bin 1')
+    robot.move_to_agv('agv 1')
+    robot.move_from_bin('bin 1')
+    robot.move_from_agv('agv 1')
+    robot.move_to_gripper_station('gripper changing station')
+    robot.move_from_gripper_station('gripper changing station')
 
-
-
+    # g_robot = gantry('Shon', 2.0, ['s', 'a'], 1.0, 2.0, 10, 11, 'NIST')
+    # g_robot.pick_up('red battery', 'bin 2')
