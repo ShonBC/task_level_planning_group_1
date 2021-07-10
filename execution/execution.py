@@ -69,12 +69,20 @@ def execute_plan(plan, ind_robot, gnd_robot, gnt_robot, system_tracker):
             robot.move_to_agv(system_tracker["agv"]["selected"]) 
 
         elif 'to gripper' in command:
-            
+            robot.move_to_gripper_station('gripper station')
+
+        elif 'from bin' in command:
+
+            robot.move_from_bin(bin_num)
 
         elif 'from agv' in command:
             robot.move_from_agv(system_tracker["agv"]["selected"])
 
+        elif 'from gripper' in command:
+            robot.move_from_gripper_station('gripper station')
 
+        elif 'discard' in command:
+            robot.discard_part(part_type)
 
     # print('kit complete')
 
