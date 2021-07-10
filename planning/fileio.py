@@ -7,12 +7,13 @@ This module creates a new PDDL file from the original.
  - Iterate over this updated list and write the list content in a new file
 """
 
-# system_tracker = {"bins": {"red battery": {"parts": 3, "location": 1}, "blue battery": {"parts": 2, "location": 2},
-#                           "blue sensor": {"parts": 1, "location": 3}, "green regulator": {"parts": 5, "location": 4}},
-#                  "agv": {"selected": "3", "current station": "0", "remaining stations": ('a', 's', 'f')},
-#                  "kit":  {"red battery": 2, "blue battery": 2, "blue sensor": 1, "green regulator": 1},
-#                  "kit total": 6}
 
+system_tracker = {"bins": {"red battery": {"parts": "3", "location": "1"}, "blue battery": {"parts": "2", "location": "2"},
+                          "blue sensor": {"parts": "1", "location": "3"}, "green regulator": {"parts": "5", "location": "4"}},
+                 "agv": {"selected": "agv2", "current station": 'as1', "remaining stations": ('agv1', 'agv3', 'agv4')},
+                 "kit":  {"red battery": "2", "blue battery": "2", "blue sensor": "1", "green regulator": "1"},
+                 "kit total": "6"}
+# import execution.taskplanning as task
 
 def write_new_problem_file(path):
     """
@@ -101,24 +102,24 @@ def update_problem_states(user_inputs_file):
                 output_list[i] = "        (agv-is-at-ks " + at_ks[agv_is_at_ks_counter]+")\n"
             agv_is_at_ks_counter += 1
         if 'bin-has-parttype' in output_list[i] and 'blue_sensor' in output_list[i]:
-            output_list[i] = "        (bin-has-parttype " + blue_sensor_bin + " blue_sensor)\n"
+            output_list[i] = "        (bin-has-parttype bin" + blue_sensor_bin + " blue_sensor)\n"
         if 'bin-has-parttype' in output_list[i] and 'green_regulator' in output_list[i]:
-            output_list[i] = '        (bin-has-parttype ' + green_regulator_bin + ' green_regulator)\n'
+            output_list[i] = '        (bin-has-parttype bin' + green_regulator_bin + ' green_regulator)\n'
         if 'bin-has-parttype' in output_list[i] and 'blue_battery' in output_list[i]:
-            output_list[i] = '        (bin-has-parttype ' + blue_battery_bin + ' blue_battery)\n'
+            output_list[i] = '        (bin-has-parttype bin' + blue_battery_bin + ' blue_battery)\n'
         if 'bin-has-parttype' in output_list[i] and 'red_battery' in output_list[i]:
-            output_list[i] = '        (bin-has-parttype ' + red_battery_bin + ' red_battery)\n'
+            output_list[i] = '        (bin-has-parttype bin' + red_battery_bin + ' red_battery)\n'
         if 'parttype-quantity-in-bin' in output_list[i] and 'red_battery' in output_list[i]:
-            output_list[i] = '(=(parttype-quantity-in-bin red_battery ' + red_battery_bin + ')'\
+            output_list[i] = '(=(parttype-quantity-in-bin red_battery bin' + red_battery_bin + ')'\
                              + initial_red_battery_quantity + ')\n'
         if 'parttype-quantity-in-bin' in output_list[i] and 'blue_battery' in output_list[i]:
-            output_list[i] = '(=(parttype-quantity-in-bin blue_battery ' + blue_battery_bin + ')' \
+            output_list[i] = '(=(parttype-quantity-in-bin blue_battery bin' + blue_battery_bin + ')' \
                              + initial_blue_battery_quantity + ')\n'
         if 'parttype-quantity-in-bin' in output_list[i] and 'blue_sensor' in output_list[i]:
-            output_list[i] = '(=(parttype-quantity-in-bin blue_sensor ' + blue_sensor_bin + ')' \
+            output_list[i] = '(=(parttype-quantity-in-bin blue_sensor bin' + blue_sensor_bin + ')' \
                              + initial_blue_sensor_quantity + ')\n'
         if 'parttype-quantity-in-bin' in output_list[i] and 'green_regulator' in output_list[i]:
-            output_list[i] = '(=(parttype-quantity-in-bin green_regulator ' + green_regulator_bin + ')' \
+            output_list[i] = '(=(parttype-quantity-in-bin green_regulator bin' + green_regulator_bin + ')' \
                              + initial_green_regulator_quantity + ')\n'
         if 'required-parttype-qty-on-agv' in output_list[i] and 'red_battery' in output_list[i]:
             output_list[i] = '(=(required-parttype-qty-on-agv red_battery ' + used_agv + ')'\
@@ -139,17 +140,11 @@ def update_problem_states(user_inputs_file):
 
 
 if __name__ == '__main__':
-    # # absolute path to the PDDL problem file
-    # input_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
-    # # absolute path to the new PDDL problem file
-    # output_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
-    
-    # Shon's Test file path
+    # system_tracker = task.user_inputs()
     # absolute path to the PDDL problem file
-    input_file_path = "/home/luna/Desktop/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
+    input_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
     # absolute path to the new PDDL problem file
-    output_file_path = "/home/luna/Desktop/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
-
+    output_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
     output_list = read_file(input_file_path)
     update_problem_states(system_tracker)
     write_new_problem_file(output_file_path)
