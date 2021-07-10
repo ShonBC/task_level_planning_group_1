@@ -15,14 +15,24 @@ Both *.ppdl files in 'planning' folder should be placed in the same folder as th
 
 import subprocess
 
-The main file to run the program is ‘execution.py’.
+To run the program from your computer, go to the 'main.py' and modify the variables input_file_path, output_file_path, and planner_folder as below:
+
+
+# absolute path to the PDDL problem file
+input_file_path = "/home/luna/Desktop/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
+
+# absolute path to the new PDDL problem file
+output_file_path = "/home/luna/Desktop/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
+
+# root directory of the planner
+planner_folder = '/home/luna/Desktop/popf-tif-clp/planner/debug/popf'
+
 
 User Inputs: 
 
 You must enter positive integer values (separated by a ‘space’ if required) for the following requested amounts: 
 
--Number of red batteries/blue batteries/blue sensors/green regulators (must be 5 or less)
--Bin number for each part (program will request one at a time, you must pick from list given)
+-Number of red batteries (program will request one at a time, you must pick from list given)
 -AGV to use for kitting (choose one from 1,2,3,4)
 
 You must enter the AGV location and station to deliver parts to exactly from the given list (actual list will depend on AGV choice):
