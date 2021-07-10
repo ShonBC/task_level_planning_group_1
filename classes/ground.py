@@ -1,4 +1,4 @@
-from industrial_robot import industrial_Robot
+from industrial_robot import Industrial_Robot
 
 
 class Ground(Industrial_Robot):
