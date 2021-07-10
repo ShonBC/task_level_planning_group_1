@@ -1,14 +1,9 @@
 """Takes user inputs to initialize planning environment
 """
 
-import planning.fileio
-import classes.industrial_robot as industrial
-import classes.ground_robot as ground
-import classes.gantry_robot as gantry
-
 system_tracker = {"bins": {"red battery": {"parts": 0, "location": 1}, "blue battery": {"parts": 0, "location": 1},
                            "blue sensor": {"parts": 0, "location": 1}, "green regulator": {"parts": 0, "location": 1}},
-                  "agv": {"selected": "", "current station": "", "remaining stations": ()},
+                  "agv": {"selected": "", "current station": "", "remaining agv's": ()},
                   "kit":  {"red battery": 0, "blue battery": 0, "blue sensor": 0, "green regulator": 0},
                   "kit total": 0}
 
@@ -116,8 +111,13 @@ def user_inputs():
         else:
             try_again(1, 2, 3, 4)
 
+    agv = ["1", "2", "3", "4"]
     agv_loc_no = "agv" + agv_no
     system_tracker["agv"]["selected"] = agv_loc_no
+    for i in agv:
+        if i == agv_no:
+            agv.remove(i)
+    system_tracker["agv"]["remaining agv's"] = tuple(agv)
     stations = ["ks" + agv_no]
     if agv_no == "1" or agv_no == "2":
         stations.append("as1")
@@ -137,7 +137,6 @@ def user_inputs():
     system_tracker["agv"]["current station"] = agv_location
 
     ks = stations.pop(0)
-    system_tracker["agv"]["remaining stations"] = tuple(stations)
     proper_entry = False
     while not proper_entry:
         as_sta = input(f"Q8. Station to deliver parts {stations}: ")
@@ -177,5 +176,5 @@ def user_inputs():
     # ground.main()
     # industrial_robot.main()
     print("After Updating System Tracker")
-   # print(system_tracker)
-  return system_tracker
+    print(system_tracker)
+    return system_tracker
