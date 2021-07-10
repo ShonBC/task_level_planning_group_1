@@ -1,26 +1,26 @@
 import subprocess
-import execution.execution
-import classes.ground_robot
-import classes.gantry_robot
+# import execution.execution
+# import classes.ground_robot
+# import classes.gantry_robot
 
-# root directory of the planner
-# planner_folder = '/home/brenda/Desktop/popf-tif-clp/planner/debug/popf'
+def plan():
 
-
-# Shon's Test file path
-planner_folder = '/home/luna/Desktop/popf-tif-clp/planner/debug/popf'
-# planner_folder = '/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf'
+    # root directory of the planner
+    # planner_folder = '/home/brenda/Desktop/popf-tif-clp/planner/debug/popf'
 
 
-# domain file
-domain_file = planner_folder + '/rwa2-domain.pddl'
-# problem file
-problem_file = planner_folder + '/rwa2-problem.pddl'
-# planner binary to execute on domain and problem files
-planner = f'{planner_folder}/popf3-clp {domain_file} {problem_file}'
+    # Shon's Test file path
+    planner_folder = '/home/luna/Desktop/popf-tif-clp/planner/debug/popf'
+    # planner_folder = '/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf'
 
 
-if __name__ == '__main__':
+    # domain file
+    domain_file = planner_folder + '/rwa2-domain.pddl'
+    # problem file
+    problem_file = planner_folder + '/rwa2-problem.pddl'
+    # planner binary to execute on domain and problem files
+    planner = f'{planner_folder}/popf3-clp {domain_file} {problem_file}'
+
     # bash command execution from Python
     planner_cmd = ['bash', '-c', planner]
     process = subprocess.Popen(planner_cmd, stdout=subprocess.PIPE)
@@ -39,8 +39,12 @@ if __name__ == '__main__':
                  "kit":  {"red battery": "2", "blue battery": "2", "blue sensor": "1", "green regulator": "1"},
                  "kit total": "6"}
 
-    gnd = classes.ground_robot.Ground('Shon', 2.0, ['s', 'a'], 1.0, 'NIST')
-    gnt = classes.gantry_robot.Gantry('Shon', 2.0, ['s', 'a'], 1.0, 2.0, 10, 11, 'NIST')
-    execution.execution.execute_plan(result, gnd, gnt, system_tracker)
+    # gnd = classes.ground_robot.Ground('Shon', 2.0, ['s', 'a'], 1.0, 'NIST')
+    # gnt = classes.gantry_robot.Gantry('Shon', 2.0, ['s', 'a'], 1.0, 2.0, 10, 11, 'NIST')
+    # execution.execution.execute_plan(result, gnd, gnt, system_tracker)
 
     # print(process.returncode)
+
+if __name__ == '__main__':
+
+    plan()
