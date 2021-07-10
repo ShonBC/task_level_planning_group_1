@@ -33,7 +33,7 @@ def try_again(*args):
     print('\n')
 
 
-def main():
+def user_inputs():
     print("Initial System Tracker")
     print(system_tracker)
     # f = open("test.txt")  # open file in current directory
@@ -177,4 +177,5 @@ def main():
     # ground.main()
     # industrial_robot.main()
     print("After Updating System Tracker")
-    print(system_tracker)
+   # print(system_tracker)
+  return system_tracker
