@@ -7,8 +7,11 @@ This module creates a new PDDL file from the original.
  - Iterate over this updated list and write the list content in a new file
 """
 
-user_inputs_file = ['5', '5', '5', '5', 'bin1', 'bin2', 'bin3', 'bin4', 'agv2',
-                    'as2', ('agv1', 'agv3', 'agv4'), '2', '2', '1', '1', '6']
+# system_tracker = {"bins": {"red battery": {"parts": 3, "location": 1}, "blue battery": {"parts": 2, "location": 2},
+#                           "blue sensor": {"parts": 1, "location": 3}, "green regulator": {"parts": 5, "location": 4}},
+#                  "agv": {"selected": "3", "current station": "0", "remaining stations": ('a', 's', 'f')},
+#                  "kit":  {"red battery": 2, "blue battery": 2, "blue sensor": 1, "green regulator": 1},
+#                  "kit total": 6}
 
 
 def write_new_problem_file(path):
@@ -56,29 +59,29 @@ def update_problem_states(user_inputs_file):
     # ----------------------------
     # start data from user inputs
     # We assume the following information comes from user inputs
-    initial_red_battery_quantity = user_inputs_file[0]
-    initial_blue_battery_quantity = user_inputs_file[1]
-    initial_blue_sensor_quantity = user_inputs_file[2]
-    initial_green_regulator_quantity = user_inputs_file[3]
+    initial_red_battery_quantity = system_tracker["bins"]["red battery"]["parts"]
+    initial_blue_battery_quantity = system_tracker["bins"]["blue battery"]["parts"]
+    initial_blue_sensor_quantity = system_tracker["bins"]["blue sensor"]["parts"]
+    initial_green_regulator_quantity = system_tracker["bins"]["green regulator"]["parts"]
 
     # bin and part type information
-    red_battery_bin = user_inputs_file[4]
-    blue_battery_bin = user_inputs_file[5]
-    blue_sensor_bin = user_inputs_file[6]
-    green_regulator_bin = user_inputs_file[7]
+    red_battery_bin = system_tracker["bins"]["red battery"]["location"]
+    blue_battery_bin = system_tracker["bins"]["blue battery"]["location"]
+    blue_sensor_bin = system_tracker["bins"]["blue sensor"]["location"]
+    green_regulator_bin = system_tracker["bins"]["green regulator"]["location"]
 
     # agv information
-    used_agv = user_inputs_file[8]
-    used_agv_station = user_inputs_file[9]
-    at_ks = user_inputs_file[10]
+    used_agv = system_tracker["agv"]["selected"]
+    used_agv_station = system_tracker["agv"]["current station"]
+    at_ks = system_tracker["agv"]["remaining stations"]
 
     # required part quantity information
-    required_red_battery_quantity = user_inputs_file[11]
-    required_blue_battery_quantity = user_inputs_file[12]
-    required_blue_sensor_quantity = user_inputs_file[13]
-    required_green_regulator_quantity = user_inputs_file[14]
+    required_red_battery_quantity = system_tracker["kit"]["red battery"]
+    required_blue_battery_quantity = system_tracker["kit"]["blue battery"]
+    required_blue_sensor_quantity = system_tracker["kit"]["blue sensor"]
+    required_green_regulator_quantity = system_tracker["kit"]["green regulator"]
 
-    kit_final_qty = user_inputs_file[15]
+    kit_final_qty = system_tracker.get("kit total")
 
     # end data from user inputs
 
@@ -141,5 +144,5 @@ if __name__ == '__main__':
     # absolute path to the new PDDL problem file
     output_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
     output_list = read_file(input_file_path)
-    update_problem_states(user_inputs_file)
+    update_problem_states(system_tracker)
     write_new_problem_file(output_file_path)
