@@ -6,7 +6,7 @@ import classes.ground_robot as Ground
 import classes.gantry_robot as Gantry
 
 
-def execute_plan(plan, ind_robot, gnd_robot, gnt_robot, system_tracker):
+def execute_plan(plan, gnd_robot, gnt_robot, system_tracker):
 
     for command in plan:
         
@@ -89,7 +89,6 @@ def execute_plan(plan, ind_robot, gnd_robot, gnt_robot, system_tracker):
 
 task.main()
 
-execute_plan()
 
 
 
