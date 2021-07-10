@@ -1,4 +1,4 @@
-"""Takes user inputs to initialize planning environment
+"""Takes user inputs to initialize planning environment and store them into a dictionary structure.
 """
 
 system_tracker = {"bins": {"red battery": {"parts": 0, "location": 1}, "blue battery": {"parts": 0, "location": 1},
@@ -20,35 +20,38 @@ def modify_bin(bin_no: tuple, entry: int):
     bin_no = tuple(bin_no)
     return bin_no
 
-
+# Will print message reminding user about the proper entries.
 def try_again(*args):
     print("Please Try Again!")
     for arg in args:
         print(f'The only valid entries are {arg}', end='')
     print('\n')
 
-
+# Program that will ask for user input starts here. 
 def user_inputs():
     print("Initial System Tracker")
     print(system_tracker)
-    # f = open("test.txt")  # open file in current directory
+    # part_entry: Flags whether number of parts entered is proper as required in the specifications. If flag is true, the input entry is correct. 
+    # Otherwise, try again.
     part_entry = False
     while not part_entry:
         red_battery, blue_battery, blue_sensor, green_regulator = input("Q1. Number of red battery/blue battery/blue "
                                                                         "sensor/green regulator in bins [0-5]: ").split()
+        # Will check if user enters integer between 0 and 5 and will proceed as follows.
         if red_battery.isdigit() and blue_battery.isdigit() and blue_sensor.isdigit() and green_regulator.isdigit() and \
                 (0 <= int(red_battery) < 6) and (0 <= int(blue_battery) < 6) and (0 <= int(blue_sensor) < 6) and \
                 (0 <= int(green_regulator) < 6):
             part_entry = True
         else:
             try_again(0, 1, 2, 3, 4, 5)
+        # Store number of parts in bins in the bins key of system_tracker.
         system_tracker["bins"]["red battery"]["parts"] = red_battery
         system_tracker["bins"]["blue battery"]["parts"] = blue_battery
         system_tracker["bins"]["blue sensor"]["parts"] = blue_sensor
         system_tracker["bins"]["green regulator"]["parts"] = green_regulator
-
-    bin_no = (1, 2, 3, 4, 5, 6, 7, 8)
-    if int(red_battery) > 0:
+    
+    bin_no = (1, 2, 3, 4, 5, 6, 7, 8)         # Created for display purposes shown below. 
+    if int(red_battery) > 0:      # Question will only be asked if number of red batteries is greater than 0.
         proper_entry = False
         while not proper_entry:
             red_bat_bin = input(f"Q2. Bin for red batteries {bin_no}: ")
