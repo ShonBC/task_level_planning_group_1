@@ -1,10 +1,10 @@
-    """Takes user inputs to initialize planning environment
-    """
-    
-import fileio
-import industrial_robot
-import ground
-import gantry
+"""Takes user inputs to initialize planning environment
+"""
+
+import planning.fileio
+import classes.industrial_robot as industrial
+import classes.ground_robot as ground
+import classes.gantry_robot as gantry
 
 system_tracker = {"bins": {"red battery": {"parts": 0, "location": 1}, "blue battery": {"parts": 0, "location": 1},
                            "blue sensor": {"parts": 0, "location": 1}, "green regulator": {"parts": 0, "location": 1}},
