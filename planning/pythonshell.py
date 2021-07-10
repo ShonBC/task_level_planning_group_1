@@ -1,7 +1,7 @@
 import subprocess
-# import execution.execution
-# import classes.ground_robot
-# import classes.gantry_robot
+import execution.execution
+import classes.ground_robot
+import classes.gantry_robot
 
 def plan():
 
@@ -39,9 +39,9 @@ def plan():
                  "kit":  {"red battery": "2", "blue battery": "2", "blue sensor": "1", "green regulator": "1"},
                  "kit total": "6"}
 
-    # gnd = classes.ground_robot.Ground('Shon', 2.0, ['s', 'a'], 1.0, 'NIST')
-    # gnt = classes.gantry_robot.Gantry('Shon', 2.0, ['s', 'a'], 1.0, 2.0, 10, 11, 'NIST')
-    # execution.execution.execute_plan(result, gnd, gnt, system_tracker)
+    gnd = classes.ground_robot.Ground('Shon', 2.0, ['s', 'a'], 1.0, 'NIST')
+    gnt = classes.gantry_robot.Gantry('Shon', 2.0, ['s', 'a'], 1.0, 2.0, 10, 11, 'NIST')
+    execution.execution.execute_plan(result, gnd, gnt, system_tracker)
 
     # print(process.returncode)
 

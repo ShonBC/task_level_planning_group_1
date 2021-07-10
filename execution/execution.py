@@ -87,7 +87,7 @@ def execute_plan(plan, gnd_robot, gnt_robot, system_tracker):
     # print('kit complete')
 
 
-task.main()
+task.user_inputs()
 
 
 
