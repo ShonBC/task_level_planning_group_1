@@ -25,8 +25,8 @@ planner_folder = '/home/luna/Desktop/popf-tif-clp/planner/debug/popf'
 if __name__ == '__main__':
 
     # Instantiate ground and gantry robots
-    ground_robot_obj = ground.Ground('ground robot', 2.0, ['s', 'a'], 1.0, 'NIST')
-    gantry_robot_obj = gantry.Gantry('gantry robot', 2.0, ['s', 'a'], 1.0, 2.0, 10, 11, 'NIST')
+    ground_robot_obj = ground.Ground('ground robot', 1.0, ['action 1', 'action 2'], 1.0, 'NIST')
+    gantry_robot_obj = gantry.Gantry('gantry robot', 1.0, ['action 1', 'action 2'], 1.0, 2.0, 10, 11, 'NIST')
 
     # Take user inputs
     task.user_inputs()
