@@ -6,14 +6,13 @@ This module creates a new PDDL file from the original.
  - Update this list from user inputs
  - Iterate over this updated list and write the list content in a new file
 """
+import execution.taskplanning as task
 
-
-system_tracker = {"bins": {"red battery": {"parts": "3", "location": "1"}, "blue battery": {"parts": "2", "location": "2"},
-                          "blue sensor": {"parts": "1", "location": "3"}, "green regulator": {"parts": "5", "location": "4"}},
-                 "agv": {"selected": "agv2", "current station": 'as1', "remaining stations": ('agv1', 'agv3', 'agv4')},
-                 "kit":  {"red battery": "2", "blue battery": "2", "blue sensor": "1", "green regulator": "1"},
-                 "kit total": "6"}
-# import execution.taskplanning as task
+# system_tracker = {"bins": {"red battery": {"parts": "3", "location": "1"}, "blue battery": {"parts": "2", "location": "2"},
+#                           "blue sensor": {"parts": "1", "location": "3"}, "green regulator": {"parts": "5", "location": "4"}},
+#                  "agv": {"selected": "agv2", "current station": 'as1', "remaining stations": ('agv1', 'agv3', 'agv4')},
+#                  "kit":  {"red battery": "2", "blue battery": "2", "blue sensor": "1", "green regulator": "1"},
+#                  "kit total": "6"}
 
 def write_new_problem_file(path):
     """
@@ -61,6 +60,7 @@ def update_problem_states(user_inputs_file):
     # start data from user inputs
     # We assume the following information comes from user inputs
     initial_red_battery_quantity = system_tracker["bins"]["red battery"]["parts"]
+    # print(initial_red_battery_quantity)
     initial_blue_battery_quantity = system_tracker["bins"]["blue battery"]["parts"]
     initial_blue_sensor_quantity = system_tracker["bins"]["blue sensor"]["parts"]
     initial_green_regulator_quantity = system_tracker["bins"]["green regulator"]["parts"]
@@ -74,7 +74,7 @@ def update_problem_states(user_inputs_file):
     # agv information
     used_agv = system_tracker["agv"]["selected"]
     used_agv_station = system_tracker["agv"]["current station"]
-    at_ks = system_tracker["agv"]["remaining stations"]
+    at_ks = system_tracker["agv"]["remaining agv's"]
 
     # required part quantity information
     required_red_battery_quantity = system_tracker["kit"]["red battery"]
@@ -140,11 +140,17 @@ def update_problem_states(user_inputs_file):
 
 
 if __name__ == '__main__':
-    # system_tracker = task.user_inputs()
+    system_tracker = task.user_inputs()
+    print(system_tracker)
     # absolute path to the PDDL problem file
-    input_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
+    input_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
+    # input_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
+    # input_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
+
     # absolute path to the new PDDL problem file
-    output_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
+    output_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
+    # output_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
+    # output_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
     output_list = read_file(input_file_path)
     update_problem_states(system_tracker)
     write_new_problem_file(output_file_path)
