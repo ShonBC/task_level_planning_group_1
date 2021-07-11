@@ -37,13 +37,17 @@ User Inputs:
 You must enter positive integer values (separated by a ‘space’ if required) for the following requested amounts: 
 
 -Number of red batteries (program will request one at a time, you must pick from list given)
+
 -AGV to use for kitting (choose one from 1,2,3,4)
 
 You must enter the AGV location and station to deliver parts to exactly from the given list (actual list will depend on AGV choice):
+
 -AGV location [as1, as2, ks ]
+
 -Station to deliver parts [as1, as2]
 
 You must enter positive integer values (separated by a ‘space’) for the following requested amounts: 
+
 -Number of red battery/blue battery/blue sensor/green regulator in kit (must be 5 or less)
 
 
