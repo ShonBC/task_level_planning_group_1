@@ -48,7 +48,7 @@ def read_file(path):
         return state_list
 
 
-def update_problem_states(user_inputs_file):
+def update_problem_states(system_tracker):
     """
     Read a list and update some of its contents from user inputs
     :return: None
@@ -138,7 +138,7 @@ def update_problem_states(user_inputs_file):
         if 'problem rwa2-problem'in output_list[i]:
             output_list[i] = '(define (problem rwa2-updated-problem)\n'
 
-def generate(input_file_path, output_file_path):
+def generate(input_file_path, output_file_path, system_tracker):
     """Generate the plan list and save a new updated pddl file.
 
     Args:
@@ -146,7 +146,6 @@ def generate(input_file_path, output_file_path):
         output_file_path ([type]): File path to updated pddl problem file
     """
 
-    system_tracker = task.user_inputs()
     output_list = read_file(input_file_path)
     update_problem_states(system_tracker)
     write_new_problem_file(output_file_path)

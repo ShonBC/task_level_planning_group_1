@@ -1,7 +1,4 @@
 import subprocess
-# import execution.execution
-# import classes.ground_robot
-# import classes.gantry_robot
 
 def plan(planner_folder):
 
@@ -27,18 +24,7 @@ def plan(planner_folder):
     # print(process.returncode)
 
     return result
-
-    # system_tracker = {"bins": {"red battery": {"parts": "3", "location": "1"}, "blue battery": {"parts": "2", "location": "2"},
-    #                       "blue sensor": {"parts": "1", "location": "3"}, "green regulator": {"parts": "5", "location": "4"}},
-    #              "agv": {"selected": "agv2", "current station": 'as1', "remaining stations": ('agv1', 'agv3', 'agv4')},
-    #              "kit":  {"red battery": "2", "blue battery": "2", "blue sensor": "1", "green regulator": "1"},
-    #              "kit total": "6"}
-
-    # # gnd = classes.ground_robot.Ground('Shon', 2.0, ['s', 'a'], 1.0, 'NIST')
-    # # gnt = classes.gantry_robot.Gantry('Shon', 2.0, ['s', 'a'], 1.0, 2.0, 10, 11, 'NIST')
-    # # execution.execution.execute_plan(result, gnd, gnt, system_tracker)
-
-    
+   
 
 if __name__ == '__main__':
 

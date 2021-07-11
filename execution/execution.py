@@ -1,10 +1,7 @@
-# from task_level_planning_group_1.execution 
-import taskplanning as task
 import planning.fileio
 import classes.industrial_robot as Industrial
 import classes.ground_robot as Ground
 import classes.gantry_robot as Gantry
-
 
 def execute_plan(plan, gnd_robot, gnt_robot, system_tracker):
 
@@ -18,9 +15,6 @@ def execute_plan(plan, gnd_robot, gnt_robot, system_tracker):
 
         elif 'ground' in command:
             robot = gnd_robot 
-
-        elif 'industrial' in command:
-            robot = gnd_robot
 
         # Check for part type and bin number
         if 'red' in command:
@@ -41,7 +35,7 @@ def execute_plan(plan, gnd_robot, gnt_robot, system_tracker):
 
         if 'finger' in command:
             gripper = 'finger gripper'
-        elif ' vacuum' in command:
+        elif 'vacuum' in command:
             gripper = 'vacuum gripper'
 
         # Check for robot action
@@ -66,7 +60,7 @@ def execute_plan(plan, gnd_robot, gnt_robot, system_tracker):
             robot.move_to_bin(bin_num)
         
         elif 'to agv' in command:
-            robot.move_to_agv(system_tracker["agv"]["selected"]) 
+            robot.move_to_agv(agv) 
 
         elif 'to gripper' in command:
             robot.move_to_gripper_station('gripper station')
@@ -76,7 +70,7 @@ def execute_plan(plan, gnd_robot, gnt_robot, system_tracker):
             robot.move_from_bin(bin_num)
 
         elif 'from agv' in command:
-            robot.move_from_agv(system_tracker["agv"]["selected"])
+            robot.move_from_agv(agv)
 
         elif 'from gripper' in command:
             robot.move_from_gripper_station('gripper station')
@@ -87,7 +81,7 @@ def execute_plan(plan, gnd_robot, gnt_robot, system_tracker):
     # print('kit complete')
 
 
-task.user_inputs()
+
 
 
 
