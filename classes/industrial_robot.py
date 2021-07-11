@@ -57,7 +57,7 @@ class Industrial():
             bin (str): Parts are stored in bins 1-8.
         """
 
-        print(f'robot picks up {parttype} from {bin}')
+        print(f'{self.name} picks up {parttype} from bin {bin}')
 
     def put_down(self, parttype: str, agv: str):
         """Print the part type put down and the agv it was placed in.
@@ -67,7 +67,7 @@ class Industrial():
             agv (str): Automated Guided Vehicle used to transport parts to kitting station.
         """
 
-        print(f'robot puts down {parttype} from {agv}')
+        print(f'{self.name} puts down {parttype} from {agv}')
 
     def attach_gripper(self, gripper: str):
         """Print the gripper the robot has attached.
@@ -76,7 +76,7 @@ class Industrial():
             gripper (str): Robots can use 2 grippers: A vacuum gripper (vacuum_gripper) and a 3-finger gripper (finger_gripper).
         """
 
-        print(f'robot attaches {gripper}')
+        print(f'{self.name} attaches {gripper}')
 
     def detach_gripper(self, gripper: str):
         """Print the gripper the robot has detached.
@@ -85,7 +85,7 @@ class Industrial():
             gripper (str): Robots can use 2 grippers: A vacuum gripper (vacuum_gripper) and a 3-finger gripper (finger_gripper).
         """
 
-        print(f'robot detaches {gripper}')
+        print(f'{self.name} detaches {gripper}')
 
     def move_to_bin(self, bin:str): 
         """Print the bin the robot has moved to.
@@ -94,7 +94,7 @@ class Industrial():
             bin (str): Parts are stored in bins 1-8.
         """
 
-        print(f'robot moves to {bin}')
+        print(f'{self.name} moves to {bin}')
 
     def move_to_agv(self, agv: str): 
         """Print the AGV the robot has moved to.
@@ -103,7 +103,7 @@ class Industrial():
             agv (str): Automated Guided Vehicle used to transport parts to kitting station.
         """
 
-        print(f'robot moves to {agv}')
+        print(f'{self.name} moves to {agv}')
 
     def move_to_gripper_station(self, station: str): 
         """Print the robot has moved to the gripper station.
@@ -112,7 +112,7 @@ class Industrial():
             station (str): Gripper changing station. The robot must move here to change grippers.
         """
 
-        print(f'robot moves to {station}')
+        print(f'{self.name} moves to {station}')
 
     def move_from_bin(self, bin: str): 
         """Print the bin the robot is moving from.
@@ -121,7 +121,7 @@ class Industrial():
             bin (str): Parts are stored in bins 1-8.
         """
 
-        print(f'robot moves from {bin}')
+        print(f'{self.name} moves from {bin}')
 
     def move_from_agv(self, agv: str): 
         """Print the AGV the robot is moving from.
@@ -130,7 +130,7 @@ class Industrial():
             agv (str): Automated Guided Vehicle used to transport parts to kitting station.
         """
 
-        print(f'robot moves from {agv}')
+        print(f'{self.name} moves from {agv}')
 
     def move_from_gripper_station(self, station: str): 
         """Print the robot is moving from the gripper changing station.
@@ -139,7 +139,7 @@ class Industrial():
             station (str): Gripper changing station. The robot must move here to change grippers.
         """
 
-        print(f'robot moves from {station}')
+        print(f'{self.name} moves from {station}')
 
 if __name__ == '__main__':
     robot = Industrial('Shon', 1.2, ['s', 'd'])

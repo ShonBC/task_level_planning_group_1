@@ -1,5 +1,5 @@
-import gantry_robot as gantry
-import ground_robot as ground
+# import gantry_robot as gantry
+# import ground_robot as ground
 
 def execute_plan(moves, gnd_robot, gnt_robot, system_tracker):
     """[summary]
@@ -102,18 +102,18 @@ def execute_plan(moves, gnd_robot, gnt_robot, system_tracker):
 
     print('kit complete')
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    ground_robot_obj = ground.Ground('ground robot', 1.0, ['action 1', 'action 2'], 1.0, 'NIST')
-    gantry_robot_obj = gantry.Gantry('gantry robot', 1.0, ['action 1', 'action 2'], 1.0, 2.0, 10, 11, 'NIST')
+#     ground_robot_obj = ground.Ground('ground robot', 1.0, ['action 1', 'action 2'], 1.0, 'NIST')
+#     gantry_robot_obj = gantry.Gantry('gantry robot', 1.0, ['action 1', 'action 2'], 1.0, 2.0, 10, 11, 'NIST')
 
-    moves = ['move_to_gripper_station gantry_robot gripper_station', 'move_to_gripper_station ground_robot gripper_station', 'drive_to_ks agv1 as1', 'attach_gripper gantry_robot vacuum_gripper gripper_station', 'attach_gripper ground_robot finger_gripper gripper_station', 'move_from_gripper_station gantry_robot vacuum_gripper gripper_station', 'move_from_gripper_station ground_robot finger_gripper gripper_station', 'move_to_bin gantry_robot bin4', 'move_to_bin ground_robot bin1', 'pick_up gantry_robot vacuum_gripper blue_battery bin4', 'pick_up ground_robot finger_gripper blue_sensor bin1', 'move_from_bin gantry_robot bin4 vacuum_gripper blue_battery', 'move_from_bin ground_robot bin1 finger_gripper blue_sensor', 'move_to_agv gantry_robot agv1 vacuum_gripper blue_battery', 'move_to_agv ground_robot agv1 finger_gripper blue_sensor', 'put_down gantry_robot blue_battery vacuum_gripper agv1', 'move_from_agv gantry_robot agv1', 'move_to_bin gantry_robot bin3', 'pick_up gantry_robot vacuum_gripper red_battery bin3', 'move_from_bin gantry_robot bin3 vacuum_gripper red_battery', 'move_to_agv gantry_robot agv1 vacuum_gripper red_battery', 'put_down gantry_robot red_battery vacuum_gripper agv1', 'move_from_agv gantry_robot agv1', 'put_down ground_robot blue_sensor finger_gripper agv1', 'move_from_agv ground_robot agv1', 'move_to_bin ground_robot bin2', 'pick_up ground_robot finger_gripper green_regulator bin2', 'move_from_bin ground_robot bin2 finger_gripper green_regulator', 'move_to_agv ground_robot agv1 finger_gripper green_regulator', 'put_down ground_robot green_regulator finger_gripper agv1', 'move_from_agv ground_robot agv1', 'move_to_bin ground_robot bin2', 'pick_up ground_robot finger_gripper green_regulator bin2', 'move_from_bin ground_robot bin2 finger_gripper green_regulator', 'move_to_agv ground_robot agv1 finger_gripper green_regulator', 'put_down ground_robot green_regulator finger_gripper agv1', 'move_from_agv ground_robot agv1', 'move_to_bin ground_robot bin1', 'pick_up ground_robot finger_gripper blue_sensor bin1', 'move_from_bin ground_robot bin1 finger_gripper blue_sensor', 'move_to_agv ground_robot agv1 finger_gripper blue_sensor', 'put_down ground_robot blue_sensor finger_gripper agv1', 'move_from_agv ground_robot agv1', 'set_kit_complete', 'drive_to_as agv1 as1']
-    system_tracker = {"bins": {"red battery": {"parts": "3", "location": "1"}, "blue battery": {"parts": "2", "location": "2"},
-                            "blue sensor": {"parts": "1", "location": "3"}, "green regulator": {"parts": "5", "location": "4"}},
-                    "agv": {"selected": "agv2", "current station": 'as1', "remaining stations": ('agv1', 'agv3', 'agv4')},
-                    "kit":  {"red battery": "2", "blue battery": "2", "blue sensor": "1", "green regulator": "1"},
-                    "kit total": "6"}
+#     moves = ['move_to_gripper_station gantry_robot gripper_station', 'move_to_gripper_station ground_robot gripper_station', 'drive_to_ks agv1 as1', 'attach_gripper gantry_robot vacuum_gripper gripper_station', 'attach_gripper ground_robot finger_gripper gripper_station', 'move_from_gripper_station gantry_robot vacuum_gripper gripper_station', 'move_from_gripper_station ground_robot finger_gripper gripper_station', 'move_to_bin gantry_robot bin4', 'move_to_bin ground_robot bin1', 'pick_up gantry_robot vacuum_gripper blue_battery bin4', 'pick_up ground_robot finger_gripper blue_sensor bin1', 'move_from_bin gantry_robot bin4 vacuum_gripper blue_battery', 'move_from_bin ground_robot bin1 finger_gripper blue_sensor', 'move_to_agv gantry_robot agv1 vacuum_gripper blue_battery', 'move_to_agv ground_robot agv1 finger_gripper blue_sensor', 'put_down gantry_robot blue_battery vacuum_gripper agv1', 'move_from_agv gantry_robot agv1', 'move_to_bin gantry_robot bin3', 'pick_up gantry_robot vacuum_gripper red_battery bin3', 'move_from_bin gantry_robot bin3 vacuum_gripper red_battery', 'move_to_agv gantry_robot agv1 vacuum_gripper red_battery', 'put_down gantry_robot red_battery vacuum_gripper agv1', 'move_from_agv gantry_robot agv1', 'put_down ground_robot blue_sensor finger_gripper agv1', 'move_from_agv ground_robot agv1', 'move_to_bin ground_robot bin2', 'pick_up ground_robot finger_gripper green_regulator bin2', 'move_from_bin ground_robot bin2 finger_gripper green_regulator', 'move_to_agv ground_robot agv1 finger_gripper green_regulator', 'put_down ground_robot green_regulator finger_gripper agv1', 'move_from_agv ground_robot agv1', 'move_to_bin ground_robot bin2', 'pick_up ground_robot finger_gripper green_regulator bin2', 'move_from_bin ground_robot bin2 finger_gripper green_regulator', 'move_to_agv ground_robot agv1 finger_gripper green_regulator', 'put_down ground_robot green_regulator finger_gripper agv1', 'move_from_agv ground_robot agv1', 'move_to_bin ground_robot bin1', 'pick_up ground_robot finger_gripper blue_sensor bin1', 'move_from_bin ground_robot bin1 finger_gripper blue_sensor', 'move_to_agv ground_robot agv1 finger_gripper blue_sensor', 'put_down ground_robot blue_sensor finger_gripper agv1', 'move_from_agv ground_robot agv1', 'set_kit_complete', 'drive_to_as agv1 as1']
+#     system_tracker = {"bins": {"red battery": {"parts": "3", "location": "1"}, "blue battery": {"parts": "2", "location": "2"},
+#                             "blue sensor": {"parts": "1", "location": "3"}, "green regulator": {"parts": "5", "location": "4"}},
+#                     "agv": {"selected": "agv2", "current station": 'as1', "remaining stations": ('agv1', 'agv3', 'agv4')},
+#                     "kit":  {"red battery": "2", "blue battery": "2", "blue sensor": "1", "green regulator": "1"},
+#                     "kit total": "6"}
 
-    execute_plan(moves, ground_robot_obj, gantry_robot_obj, system_tracker)
+#     execute_plan(moves, ground_robot_obj, gantry_robot_obj, system_tracker)
 
 

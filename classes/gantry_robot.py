@@ -86,7 +86,7 @@ class Gantry(industrial_robot.Industrial):
             bin (str): Parts are stored in bins 1-8.
         """
 
-        print(f'{self._name} picks up {parttype} from {bin}')
+        print(f'{self._name} {parttype} picks up from bin {bin}')
         self.activate_camera()
         super().pick_up(parttype, bin)
         self.flip_part(parttype)
