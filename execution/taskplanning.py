@@ -1,11 +1,13 @@
 """Takes user inputs to initialize planning environment and store them into a dictionary structure.
 """
 
-system_tracker = {"bins": {"red battery": {"parts": 0, "location": 1}, "blue battery": {"parts": 0, "location": 1},
-                           "blue sensor": {"parts": 0, "location": 1}, "green regulator": {"parts": 0, "location": 1}},
-                  "agv": {"selected": "", "current station": "", "remaining agv's": ()},
-                  "kit":  {"red battery": 0, "blue battery": 0, "blue sensor": 0, "green regulator": 0},
-                  "kit total": 0}
+system_tracker = {
+    "bins": {"red battery": {"parts": "0", "location": "1"}, "blue battery": {"parts": "0", "location": "1"},
+             "blue sensor": {"parts": "0", "location": "1"}, "green regulator": {"parts": "0", "location": "1"}},
+    "agv": {"selected": "", "current station": "", "remaining agv's": ("0", "0", "0")},
+    "kit": {"red battery": "0", "blue battery": "0", "blue sensor": "0", "green regulator": "0"},
+    "kit total": "0"}
+
 
 # Will iterate through list and return whether the entry entered is in the list
 def iterate(bin_no: list, entry):
@@ -13,12 +15,14 @@ def iterate(bin_no: list, entry):
         if elt == entry:
             return True
 
-# Will modify the bin in the bin_no tuple and return it. 
+
+# Will modify the bin in the bin_no tuple and return it.
 def modify_bin(bin_no: tuple, entry: int):
     bin_no = list(bin_no)
     bin_no.remove(entry)
     bin_no = tuple(bin_no)
     return bin_no
+
 
 # Will print message reminding user about the proper entries.
 def try_again(*args):
@@ -27,12 +31,13 @@ def try_again(*args):
         print(f'The only valid entries are {arg}', end='')
     print('\n')
 
-# Program that will ask for user input starts here. 
+
+# Program that will ask for user input starts here.
 def user_inputs():
     print("Initial System Tracker")
     print(system_tracker)
-    # part_entry: Flags whether number of parts entered is proper as required in the specifications. If flag is true, the input entry is correct. 
-    # Otherwise, try again.
+    # part_entry: Flags whether number of parts entered is proper as required in the specifications.
+    # If flag is true, the input entry is correct. Otherwise, try again.
     part_entry = False
     while not part_entry:
         red_battery, blue_battery, blue_sensor, green_regulator = input("Q1. Number of red battery/blue battery/blue "
@@ -44,27 +49,33 @@ def user_inputs():
             part_entry = True
         else:
             try_again(0, 1, 2, 3, 4, 5)
+        #
+        if int(red_battery) == 0 and int(blue_battery) == 0 and int(blue_sensor) == 0 and int(green_regulator) == 0:
+            print("Kit has no parts ... exit")
+            return system_tracker
+
         # Store number of parts in bins in the bins key of system_tracker.
         system_tracker["bins"]["red battery"]["parts"] = red_battery
         system_tracker["bins"]["blue battery"]["parts"] = blue_battery
         system_tracker["bins"]["blue sensor"]["parts"] = blue_sensor
         system_tracker["bins"]["green regulator"]["parts"] = green_regulator
-    
-    bin_no = (1, 2, 3, 4, 5, 6, 7, 8)         # Tuple created for display purposes shown below. 
-    if int(red_battery) > 0:      # Question will only be asked if number of red batteries is greater than 0.
+
+    bin_no = (1, 2, 3, 4, 5, 6, 7, 8)  # Tuple created for display purposes shown below.
+    if int(red_battery) > 0:  # Question will only be asked if number of red batteries is greater than 0.
         proper_entry = False
         while not proper_entry:
             red_bat_bin = input(f"Q2. Bin for red batteries {bin_no}: ")
             if red_bat_bin.isdigit() and 1 <= int(red_bat_bin) < 9:
                 proper_entry = True
-                bin_no = modify_bin(bin_no, int(red_bat_bin))      # Will remove the user input entered from the tuple. 
+                bin_no = modify_bin(bin_no, int(red_bat_bin))  # Will remove the user input entered from the tuple.
 
 
             else:
                 try_again(bin_no)
 
-        system_tracker["bins"]["red battery"]["location"] = red_bat_bin    # Stores bin_no entry in bins red battery location key.
-    
+        system_tracker["bins"]["red battery"][
+            "location"] = red_bat_bin  # Stores bin_no entry in bins red battery location key.
+
     # Prompts the same questions for blue battery, blue sensor and green regulators.
     if int(blue_battery) > 0:
         proper_entry = False
@@ -104,9 +115,9 @@ def user_inputs():
 
         bin_no = modify_bin(bin_no, int(green_reg_bin))
         system_tracker["bins"]["green regulator"]["location"] = green_reg_bin
-   
+
     proper_entry = False
-    agv_location = "agv"      # Used to concatenate with the agv number mentioned in the 
+    agv_location = "agv"  # Used to concatenate with the agv number mentioned in the
     while not proper_entry:
         agv_no = input("Q6. AGV to use for kitting [1-4]: ")
         if agv_no.isdigit() and 1 <= int(agv_no) < 5:
@@ -115,12 +126,12 @@ def user_inputs():
         else:
             try_again(1, 2, 3, 4)
 
-    agv = ["1", "2", "3", "4"]
-    agv_loc_no = "agv" + agv_no
-    system_tracker["agv"]["selected"] = agv_loc_no
+    system_tracker["agv"]["selected"] = agv_location
+    agv = ["agv1", "agv2", "agv3", "agv4"]
     for i in agv:
-        if i == agv_no:
+        if i == agv_location:
             agv.remove(i)
+
     system_tracker["agv"]["remaining agv's"] = tuple(agv)
     stations = ["ks" + agv_no]
     if agv_no == "1" or agv_no == "2":
@@ -132,7 +143,7 @@ def user_inputs():
 
     proper_entry = False
     while not proper_entry:
-        agv_location = input("Q7. Current location of {} {}: ".format(agv_loc_no, stations))
+        agv_location = input("Q7. Current location of {} {}: ".format(agv_location, stations))
         proper_entry = iterate(stations, agv_location)
         if not proper_entry:
             try_again(tuple(agv_location))
@@ -144,13 +155,9 @@ def user_inputs():
     proper_entry = False
     while not proper_entry:
         as_sta = input(f"Q8. Station to deliver parts {stations}: ")
-        proper_entry = iterate(stations, agv_location)
+        proper_entry = iterate(stations, as_sta)
         if not proper_entry:
             try_again(tuple(stations))
-
-    if int(red_battery) == 0 and int(blue_battery) == 0 and int(blue_sensor) == 0 and int(green_regulator) == 0:
-        print("Kit has no parts ... exit")
-        return None
 
     proper_entry = False
     while not proper_entry:
@@ -173,7 +180,6 @@ def user_inputs():
     system_tracker["kit"]["blue sensor"] = blue_sen_kit
     system_tracker["kit"]["green regulator"] = green_reg_kit
     system_tracker["kit total"] = str(int(red_bat_kit) + int(blue_bat_kit) + int(blue_sen_kit) + int(green_reg_kit))
-
 
     # Add in the call to fileio.py to set user inputs from list into .pddl files.
     # gantry.main()
