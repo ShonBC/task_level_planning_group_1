@@ -21,16 +21,18 @@ def plan(planner_folder):
     planner_cmd = ['bash', '-c', planner]
     process = subprocess.Popen(planner_cmd, stdout=subprocess.PIPE)
 
+    moves = []
     for line in process.stdout:
-        print(line)
+        # print(line)
         if "b'0" in str(line):
             result = str(line)[str(line).find('(') + 1:str(line).find(')')]
-            print(result)
+            # print(result)
+            moves.append(result)
     process.wait()
 
     # print(process.returncode)
 
-    return result
+    return moves
    
 
 if __name__ == '__main__':

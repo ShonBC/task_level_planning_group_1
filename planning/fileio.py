@@ -6,7 +6,7 @@ This module creates a new PDDL file from the original.
  - Update this list from user inputs
  - Iterate over this updated list and write the list content in a new file
 """
-import execution.taskplanning as task
+# import execution.taskplanning as task
 
 # system_tracker = {"bins": {"red battery": {"parts": "3", "location": "1"}, "blue battery": {"parts": "2", "location": "2"},
 #                           "blue sensor": {"parts": "1", "location": "3"}, "green regulator": {"parts": "5", "location": "4"}},
@@ -14,7 +14,7 @@ import execution.taskplanning as task
 #                  "kit":  {"red battery": "2", "blue battery": "2", "blue sensor": "1", "green regulator": "1"},
 #                  "kit total": "6"}
 
-def write_new_problem_file(path):
+def write_new_problem_file(path: str, output_list):
     """
     Read a list and write its content into a new file
     :param path: Absolute path for the output file
@@ -47,7 +47,7 @@ def read_file(path):
 
         return state_list
 
-def update_problem_states(system_tracker: dict):
+def update_problem_states(system_tracker: dict, output_list):
     """Read a list and update some of its contents from user inputs
 
     Args:
@@ -88,7 +88,7 @@ def update_problem_states(system_tracker: dict):
 
     # update predicates and attributes from user inputs
     for i in range(len(output_list)):
-        print("output list", output_list)
+        # print("output list", output_list)
         if 'agv-is-at-as' in output_list[i]:
             output_list[i] = "        (agv-is-at-as "+used_agv+" "+used_agv_station+")\n"
         if 'agv-is-not-at-ks' in output_list[i]:
@@ -135,7 +135,7 @@ def update_problem_states(system_tracker: dict):
                              + required_green_regulator_quantity + ')\n'
         if 'kit-final-part-qty' in output_list[i]:
             output_list[i] = '(=(kit-final-part-qty)' + kit_final_qty + ')\n'
-        if 'problem rwa2-problem'in output_list[i]:
+        if 'problem rwa2-problem' in output_list[i]:
             output_list[i] = '(define (problem rwa2-updated-problem)\n'
 
 def generate(input_file_path, output_file_path, system_tracker):
@@ -147,13 +147,14 @@ def generate(input_file_path, output_file_path, system_tracker):
     """
 
     output_list = read_file(input_file_path)
-    update_problem_states(system_tracker)
-    write_new_problem_file(output_file_path)
+    # print("generate ", output_list)
+    update_problem_states(system_tracker, output_list)
+    write_new_problem_file(output_file_path, output_list)
 
 
 if __name__ == '__main__':
-    system_tracker = task.user_inputs()
-    print(system_tracker)
+    # system_tracker = task.user_inputs()
+    # print(system_tracker)
     # absolute path to the PDDL problem file
     input_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
     # input_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"

@@ -62,8 +62,8 @@ def user_inputs():
     Returns:
         [type]: [description]
     """
-    print("Initial System Tracker")
-    print(system_tracker)
+    # print("Initial System Tracker")
+    # print(system_tracker)
     # part_entry: Flags whether number of parts entered is proper as required in the specifications.
     # If flag is true, the input entry is correct. Otherwise, try again.
     part_entry = False
@@ -213,6 +213,6 @@ def user_inputs():
     # gantry.main()
     # ground.main()
     # industrial_robot.main()
-    print("After Updating System Tracker")
-    print(system_tracker)
+    # print("After Updating System Tracker")
+    # print(system_tracker)
     return system_tracker

@@ -35,6 +35,6 @@ if __name__ == '__main__':
     fileio.generate(input_file_path, output_file_path, system_tracker)
 
     # Run the pddl planner with the updated problem file
-    plan = shell.plan(planner_folder)
-    
-    execute.execute_plan(plan, ground_robot_obj, gantry_robot_obj, system_tracker)
+    moves = shell.plan(planner_folder)
+    print(moves)
+    execute.execute_plan(moves, ground_robot_obj, gantry_robot_obj, system_tracker)
