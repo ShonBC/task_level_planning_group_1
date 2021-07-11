@@ -11,10 +11,10 @@ class Gantry(industrial_robot.Industrial):
         """Initialize Gantry class parameters. 
 
         Args:
-            name (str): Name of the robot. This attribute canonly be accessed outside the class definition and cannot be set.
+            name (str): Name of the robot. This attribute can only be accessed outside the class definition and cannot be set.
             payload (float): Payload for the robot’s arm(s). This attribute can be both accessed and set outside the class definition.
-            application (list): List of applications the robot can perform. For instance,gantry_robot can do both kitting and assembly while ground_robot can only do kitting. This attribute can be both accessed and set outside the class definition.
-            company (str, optional): Name of the robot’s vendor. By default this is set to "Nist". This attribute canonly be accessed outsidethe class definition and cannot be set. Defaults to 'NIST'.
+            application (list): List of applications the robot can perform. For instance, gantry_robot can do both kitting and assembly while ground_robot can only do kitting. This attribute can be both accessed and set outside the class definition.
+            company (str, optional): Name of the robot’s vendor. By default this is set to "Nist". This attribute canonly be accessed outside the class definition and cannot be set. Defaults to 'NIST'.
             small_rail_length (float): Length of small rail.
             long_rail_length (float): Length of long rail.
             small_rail_velocity (float): Velocity of small rail.
@@ -79,14 +79,14 @@ class Gantry(industrial_robot.Industrial):
         print(f'{self._name} flips {parttype}')
     
     def pick_up(self, parttype: str, bin: str):
-        """Gantry robot picks up part then activates its camera, calls the base class pick_up nethod,then flips the part. 
+        """Gantry robot picks up part then activates its camera, calls the base class pick_up method, then flips the part. 
 
         Args:
             parttype (str): Four part types are available in the environment, red_battery, blue_battery, green_regulator, and blue_sensor.
             bin (str): Parts are stored in bins 1-8.
         """
 
-        print(f'{self._name} {parttype} picks up from bin {bin}')
+        print(f'{self._name}  picks up {parttype} from bin {bin}')
         self.activate_camera()
         super().pick_up(parttype, bin)
         self.flip_part(parttype)
