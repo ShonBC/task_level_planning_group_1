@@ -76,11 +76,11 @@ def user_inputs():
                 (0 <= int(green_regulator) < 6):
             part_entry = True
         else:
-            try_again(0, 1, 2, 3, 4, 5)
-        #
+            try_again((0, 1, 2, 3, 4, 5))
+        
         if int(red_battery) == 0 and int(blue_battery) == 0 and int(blue_sensor) == 0 and int(green_regulator) == 0:
             print("Kit has no parts ... exit")
-            return system_tracker
+            exit()
 
         # Store number of parts in bins in the bins key of system_tracker.
         system_tracker["bins"]["red battery"]["parts"] = red_battery
