@@ -6,7 +6,7 @@ This module creates a new PDDL file from the original.
  - Update this list from user inputs
  - Iterate over this updated list and write the list content in a new file
 """
-# import execution.taskplanning as task
+import execution.taskplanning as task
 
 # system_tracker = {"bins": {"red battery": {"parts": "3", "location": "1"}, "blue battery": {"parts": "2", "location": "2"},
 #                           "blue sensor": {"parts": "1", "location": "3"}, "green regulator": {"parts": "5", "location": "4"}},
@@ -153,7 +153,7 @@ def generate(input_file_path, output_file_path, system_tracker):
 
 
 if __name__ == '__main__':
-    # system_tracker = task.user_inputs()
+    system_tracker = task.user_inputs()
     # print(system_tracker)
     # absolute path to the PDDL problem file
     input_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
