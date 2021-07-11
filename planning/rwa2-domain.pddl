@@ -62,7 +62,6 @@
 			(gripper-can-grasp-parttype ?gripper ?parttype)
 			(gripper-is-empty ?gripper)
 			(bin-has-parttype ?bin ?parttype)
-
 		)
 		:effect(and
 			(decrease(parttype-quantity-in-bin ?parttype ?bin)1)
@@ -82,6 +81,7 @@
 			?gripper - Gripper
 			?agv - AGV)
 		:precondition(and
+			(<(current-parttype-qty-on-agv ?parttype ?agv)(required-parttype-qty-on-agv ?parttype ?agv))
 			(agv-is-at-ks ?agv)
 			(robot-is-at-agv ?robot ?agv)
 			(robot-has-gripper ?robot ?gripper)
@@ -96,6 +96,7 @@
 			(increase(kit-current-part-qty)1)
 			)
 	)
+
 	(:action ATTACH_GRIPPER
 		:parameters(
 			?robot - Robot
@@ -114,6 +115,7 @@
 			(not(robot-has-no-gripper ?robot))
 		)
 	)
+
 	(:action DETACH_GRIPPER
 		:parameters(
 			?robot - Robot
@@ -132,19 +134,21 @@
 			(robot-has-no-gripper ?robot)
 		)
 	)
+
 	(:action MOVE_TO_BIN
 		:parameters(
 			?robot - Robot
+			?parttype - PartType
 			?bin - Bin)
 		:precondition(and
+			(>(parttype-quantity-in-bin ?parttype ?bin)0)
+			(bin-has-parttype ?bin ?parttype)
 			(robot-can-reach-bin ?robot ?bin)
 			(robot-is-at-home ?robot)
 			(robot-is-not-at-bin ?robot)
 			
 		)
 		:effect(and
-			(robot-is-not-at-gripper-station ?robot)
-			(robot-is-not-at-agv ?robot)
 			(robot-is-not-at-home ?robot)
 			(not(robot-is-at-home ?robot))
 			(robot-is-at-bin ?robot ?bin)
@@ -166,13 +170,11 @@
 			(robot-has-gripper ?robot ?gripper)
 			(gripper-is-on-robot ?gripper ?robot)
 			(gripper-holds-parttype ?gripper ?parttype)
-			(<(current-parttype-qty-on-agv ?parttype ?agv)(required-parttype-qty-on-agv ?parttype ?agv))
+			; (<(current-parttype-qty-on-agv ?parttype ?agv)(required-parttype-qty-on-agv ?parttype ?agv))
 		)
 		:effect(and
 			(not(robot-is-at-home ?robot))
 			(robot-is-at-agv ?robot ?agv)
-			(robot-is-not-at-gripper-station ?robot)
-			(robot-is-not-at-bin ?robot)
 			(robot-is-not-at-home ?robot)	
 			(not(robot-is-not-at-agv ?robot))
 		)
@@ -186,13 +188,9 @@
 		:precondition(and
 			(robot-is-at-home ?robot)
 			(robot-is-not-at-gripper-station ?robot)
-			(robot-is-not-at-bin ?robot)
- 	    (robot-is-not-at-agv ?robot)	
 		)
 		:effect(and
 			(robot-is-not-at-home ?robot)
-			(robot-is-not-at-agv ?robot)
-			(robot-is-not-at-bin ?robot)
 			(robot-is-at-gripper-station ?robot ?gripper_station)
 			(not(robot-is-at-home ?robot))
 			(not(robot-is-not-at-gripper-station ?robot))
@@ -201,20 +199,16 @@
 
 
 	(:action MOVE_FROM_BIN
-		:parameters (?robot - Robot ?bin - bin ?gripper - Gripper ?parttype - PartType)
+		:parameters (?robot - Robot ?bin - bin)
 		:precondition (and 
 			(robot-is-at-bin ?robot ?bin)
 			(robot-is-not-at-home ?robot)
-			(robot-is-not-at-gripper-station ?robot)
-			(robot-is-not-at-agv ?robot)
-			(robot-has-gripper ?robot ?gripper)
-			(gripper-is-on-robot ?gripper ?robot)
-			(gripper-holds-parttype ?gripper ?parttype)
 		)
 		:effect (and 
 			(not(robot-is-at-bin ?robot ?bin))
 			(not(robot-is-not-at-home ?robot))
 			(robot-is-at-home ?robot)
+			(robot-is-not-at-bin ?robot)
 		)
 	)
 
@@ -223,13 +217,12 @@
 		:precondition (and 
 			(robot-is-at-agv ?robot ?agv)
 			(robot-is-not-at-home ?robot)
-			(robot-is-not-at-gripper-station ?robot)
-			(robot-is-not-at-bin ?robot)
 		)
 		:effect (and 
 			(not(robot-is-at-agv ?robot ?agv))
 			(not(robot-is-not-at-home ?robot))
 			(robot-is-at-home ?robot)
+			(robot-is-not-at-agv ?robot)
 		)
 	)
 
@@ -238,15 +231,15 @@
 		:precondition (and 
 			(robot-is-at-gripper-station ?robot ?gripper_station)
 			(robot-is-not-at-home ?robot)
-			(robot-is-not-at-agv ?robot)
-			(robot-is-not-at-bin ?robot)
 			(robot-has-gripper ?robot ?gripper)
 			(gripper-is-on-robot ?gripper ?robot)
+			(gripper-is-empty ?gripper)
 		)
 		:effect (and 
 			(not(robot-is-at-gripper-station ?robot ?gripper_station))
 			(not(robot-is-not-at-home ?robot))
 			(robot-is-at-home ?robot)
+			(robot-is-not-at-gripper-station ?robot)
 		)
 	)
 
