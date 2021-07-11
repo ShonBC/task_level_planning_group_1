@@ -8,11 +8,11 @@ class Ground(industrial_robot.Industrial):
         """Initialize class attributes. 
 
         Args:
-            name (str): Name of the robot. This attribute canonly be accessed outside the class definition and cannot be set.
+            name (str): Name of the robot. This attribute can only be accessed outside the class definition and cannot be set.
             payload (float): Payload for the robot’s arm(s). This attribute can be both accessed and set outside the class definition.
-            application (list): List of applications the robot can perform. For instance,gantry_robot can do both kitting and assembly while ground_robot can only do kitting. This attribute can be both accessed and set outside the class definition.
+            application (list): List of applications the robot can perform. For instance, gantry_robot can do both kitting and assembly while ground_robot can only do kitting. This attribute can be both accessed and set outside the class definition.
             linear_rail_length (float): Length of linear rail. 
-            company (str, optional): Name of the robot’s vendor. By default this is set to "Nist". This attribute canonly be accessed outsidethe class definition and cannot be set. Defaults to 'NIST'.
+            company (str, optional): Name of the robot’s vendor. By default this is set to "Nist". This attribute canonly be accessed outside the class definition and cannot be set. Defaults to 'NIST'.
         """
 
         super().__init__(name, payload, application, company=company)
