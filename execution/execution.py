@@ -15,12 +15,8 @@ def execute_plan(moves, gnd_robot, gnt_robot, system_tracker):
         
         agv = system_tracker["agv"]["selected"]
 
-        #Check robot type
-        if 'gantry' in command:
-            robot = gnt_robot 
+        bin_dict = {'gantry': '', 'ground': ''}
 
-        elif 'ground' in command:
-            robot = gnd_robot 
         if 'bin1' in command:
             bin_num = 'bin 1'
         elif 'bin2' in command:
@@ -37,6 +33,15 @@ def execute_plan(moves, gnd_robot, gnt_robot, system_tracker):
             bin_num = 'bin 7'
         elif 'bin8' in command:
             bin_num = 'bin 8'
+
+        #Check robot type
+        if 'gantry' in command:
+            robot = gnt_robot 
+            # bin_num = bin_dict['gantry']
+
+        elif 'ground' in command:
+            robot = gnd_robot 
+            # bin_num = bin_dict['ground']
 
         # Check for part type and bin number
         if 'red' in command:
