@@ -152,7 +152,7 @@ def user_inputs():
             proper_entry = True
             agv_location += agv_no
         else:
-            try_again(1, 2, 3, 4)
+            try_again((1, 2, 3, 4))
 
     system_tracker["agv"]["selected"] = agv_location
     agv = ["agv1", "agv2", "agv3", "agv4"]
@@ -174,7 +174,7 @@ def user_inputs():
         agv_location = input("Q7. Current location of {} {}: ".format(agv_location, stations))
         proper_entry = iterate(stations, agv_location)
         if not proper_entry:
-            try_again(tuple(agv_location))
+            try_again(tuple(stations))
         else:
             proper_entry = True
     system_tracker["agv"]["current station"] = agv_location
@@ -201,7 +201,7 @@ def user_inputs():
                     print("Please Try Again. Number of parts entered exceeds number of available parts in bin.")
 
         if not proper_entry:
-            try_again(0, 1, 2, 3, 4, 5)
+            try_again((0, 1, 2, 3, 4, 5))
 
     system_tracker["kit"]["red battery"] = red_bat_kit
     system_tracker["kit"]["blue battery"] = blue_bat_kit
