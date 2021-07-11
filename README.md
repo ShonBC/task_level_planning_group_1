@@ -10,11 +10,11 @@ RWA2 - Task-level Planning with PDDL.  This assignment revolves around robot aut
   
 To run this program you must have python3 installed as well as be able to run the planning program tool PDDL.  
 
-Both *.ppdl files in 'planning' folder should be placed in the same folder as the popf3-clp execution file on your computer before running this program.  Modules that need to be imported are:
+Both *.ppdl files in 'planning' folder should be placed in the same folder as the popf3-clp execution file on your computer before running this program.  
 
-import subprocess
+Modules that need to be imported are:   import subprocess
 
-To run the program from your computer, go to the 'main.py' and modify the variables input_file_path, output_file_path, and planner_folder as below:
+To run the program from your computer, go to the 'main.py' and modify the variables input_file_path, output_file_path, and planner_folder as in the example below:
 
 Absolute path to the PDDL problem file:
 
@@ -29,7 +29,7 @@ Root directory of the planner:
 planner_folder = '/home/luna/Desktop/popf-tif-clp/planner/debug/popf'
 
 
-Once the file paths are correct, run the program from 'execution.py'. You will be asked for user inputs.
+Once the file paths are correct, run the program from 'main.py'. You will be asked for user inputs.
 
 
 User Inputs: 
@@ -47,7 +47,7 @@ You must enter positive integer values (separated by a ‘space’) for the foll
 -Number of red battery/blue battery/blue sensor/green regulator in kit (must be 5 or less)
 
 
-If you make an error you will be asked to re-enter until it is a valid input.
+If you make an error you will be asked to re-enter until you give a valid input.
 
 The program will take the user inputs, create a plan for execution, and output robot actions to assemble the desired kit.
 
