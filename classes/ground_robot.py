@@ -1,6 +1,8 @@
-from industrial_robot import Industrial
+# from industrial_robot import Industrial
+# import industrial_robot
+from classes import industrial_robot
 
-class Ground(Industrial):
+class Ground(industrial_robot.Industrial):
 
     def __init__(self, name: str, payload: float, application: list, linear_rail_length: float, company = 'NIST'):
         """Initialize class attributes. 

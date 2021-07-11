@@ -1,9 +1,15 @@
-import planning.fileio
-import classes.industrial_robot as Industrial
 import classes.ground_robot as Ground
 import classes.gantry_robot as Gantry
 
 def execute_plan(plan, gnd_robot, gnt_robot, system_tracker):
+    """[summary]
+
+    Args:
+        plan ([type]): [description]
+        gnd_robot ([type]): [description]
+        gnt_robot ([type]): [description]
+        system_tracker ([type]): [description]
+    """
 
     for command in plan:
         
@@ -78,7 +84,7 @@ def execute_plan(plan, gnd_robot, gnt_robot, system_tracker):
         elif 'discard' in command:
             robot.discard_part(part_type)
 
-    # print('kit complete')
+    print('kit complete')
 
 
 

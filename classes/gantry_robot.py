@@ -1,6 +1,6 @@
-from industrial_robot import Industrial
+from classes import industrial_robot
 
-class Gantry(Industrial):
+class Gantry(industrial_robot.Industrial):
     """Initialize class attributes. 
 
     Args:

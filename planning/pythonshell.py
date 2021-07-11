@@ -1,7 +1,14 @@
 import subprocess
 
 def plan(planner_folder):
+    """[summary]
 
+    Args:
+        planner_folder ([type]): [description]
+
+    Returns:
+        [type]: [description]
+    """
 
     # domain file
     domain_file = planner_folder + '/rwa2-domain.pddl'

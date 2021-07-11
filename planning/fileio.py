@@ -47,13 +47,13 @@ def read_file(path):
 
         return state_list
 
+def update_problem_states(system_tracker: dict):
+    """Read a list and update some of its contents from user inputs
 
-def update_problem_states(system_tracker):
+    Args:
+        system_tracker (dict): [description]
     """
-    Read a list and update some of its contents from user inputs
-    :return: None
-    :rtype: None
-    """
+    
     agv_is_at_ks_counter = 0
 
     # ----------------------------

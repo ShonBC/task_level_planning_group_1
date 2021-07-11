@@ -11,6 +11,16 @@ system_tracker = {
 
 # Will iterate through list and return whether the entry entered is in the list
 def iterate(bin_no: list, entry):
+    """[summary]
+
+    Args:
+        bin_no (list): [description]
+        entry ([type]): [description]
+
+    Returns:
+        [type]: [description]
+    """
+
     for elt in bin_no:
         if elt == entry:
             return True
@@ -18,6 +28,16 @@ def iterate(bin_no: list, entry):
 
 # Will modify the bin in the bin_no tuple and return it.
 def modify_bin(bin_no: tuple, entry: int):
+    """[summary]
+
+    Args:
+        bin_no (tuple): [description]
+        entry (int): [description]
+
+    Returns:
+        [type]: [description]
+    """
+
     bin_no = list(bin_no)
     bin_no.remove(entry)
     bin_no = tuple(bin_no)
@@ -26,6 +46,9 @@ def modify_bin(bin_no: tuple, entry: int):
 
 # Will print message reminding user about the proper entries.
 def try_again(*args):
+    """[summary]
+    """
+
     print("Please Try Again!")
     for arg in args:
         print(f'The only valid entries are {arg}', end='')
@@ -34,6 +57,11 @@ def try_again(*args):
 
 # Program that will ask for user input starts here.
 def user_inputs():
+    """[summary]
+
+    Returns:
+        [type]: [description]
+    """
     print("Initial System Tracker")
     print(system_tracker)
     # part_entry: Flags whether number of parts entered is proper as required in the specifications.

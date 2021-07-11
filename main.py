@@ -4,12 +4,6 @@ from planning import pythonshell as shell
 from execution import execution as execute
 from classes import gantry_robot as gantry
 from classes import ground_robot as ground
-# import execution.taskplanning as task
-# import planning.fileio as fileio
-# import planning.pythonshell as shell
-# import execution.execution as execute
-# import classes.gantry_robot as gantry
-# import classes.ground_robot as ground
 
 # absolute path to the PDDL problem file
 # input_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
