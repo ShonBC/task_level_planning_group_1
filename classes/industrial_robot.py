@@ -59,7 +59,7 @@ class Industrial():
 
         print(f'{self.name} picks up {parttype} from bin {bin}')
 
-    def put_down(self, parttype: str, agv: str):
+    def put_down(self, parttype: str, bin: str):
         """Print the part type put down and the bin it was taken from.
 
         Args:
