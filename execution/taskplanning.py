@@ -69,23 +69,27 @@ def user_inputs():
     part_entry = False
     while not part_entry:
         try:
-            red_battery, blue_battery, blue_sensor, green_regulator = input("Q1. Number of red battery/blue battery/blue "
-                                                                            "sensor/green regulator in bins [0-5]: ").split()
+            red_battery, blue_battery, blue_sensor, green_regulator = input(
+                "Q1. Number of red battery/blue battery/blue "
+                "sensor/green regulator in bins [0-5]: ").split()
         except ValueError:
             print('Enter 4 integers.')
             continue
+        print(red_battery.isdigit())
+        print(blue_battery.isdigit())
+        print(blue_sensor.isdigit())
+        print(green_regulator.isdigit())
 
-   # Will check if user enters integer between 0 and 5 and will proceed as follows.
+        # Will check if user enters integer between 0 and 5 and will proceed as follows.
         if red_battery.isdigit() and blue_battery.isdigit() and blue_sensor.isdigit() and green_regulator.isdigit() and \
                 (0 <= int(red_battery) < 6) and (0 <= int(blue_battery) < 6) and (0 <= int(blue_sensor) < 6) and \
                 (0 <= int(green_regulator) < 6):
             part_entry = True
+            if int(red_battery) == 0 and int(blue_battery) == 0 and int(blue_sensor) == 0 and int(green_regulator) == 0:
+                print("Kit has no parts ... exit")
+                exit()
         else:
             try_again((0, 1, 2, 3, 4, 5))
-        
-        if int(red_battery) == 0 and int(blue_battery) == 0 and int(blue_sensor) == 0 and int(green_regulator) == 0:
-            print("Kit has no parts ... exit")
-            exit()
 
         # Store number of parts in bins in the bins key of system_tracker.
         system_tracker["bins"]["red battery"]["parts"] = red_battery
@@ -195,29 +199,30 @@ def user_inputs():
     proper_entry = False
     while not proper_entry:
         try:
-            red_bat_kit, blue_bat_kit, blue_sen_kit, green_reg_kit = input("Q9. Number of red battery/blue battery/blue "
-                                                                       "sensor/green regulator in kit [0-5]: ").split()
+            red_bat_kit, blue_bat_kit, blue_sen_kit, green_reg_kit = input(
+                "Q9. Number of red battery/blue battery/blue "
+                "sensor/green regulator in kit [0-5]: ").split()
         except ValueError:
             print('Enter 4 integers.')
             continue
-        
+
         if red_bat_kit.isdigit() and blue_bat_kit.isdigit() and blue_sen_kit.isdigit() and green_reg_kit.isdigit():
             if 0 <= int(red_bat_kit) < 6 and 0 <= int(blue_bat_kit) < 6 and 0 <= int(blue_sen_kit) < 6 and 0 <= \
                     int(green_reg_kit) < 6:
                 proper_entry = True
-
+                if int(red_bat_kit) == 0 and int(blue_bat_kit) == 0 and int(blue_sen_kit) == 0 and int(
+                        green_reg_kit) == 0:
+                    print("Kit completed... exit")
+                    exit()
                 if int(red_bat_kit) <= int(red_battery) and int(blue_bat_kit) <= int(blue_battery) and \
                         int(blue_sen_kit) <= int(blue_sensor) and int(green_reg_kit) <= int(green_regulator):
-                        proper_entry = True
+                    pass
                 else:
                     print("Please Try Again. Number of parts entered exceeds number of available parts in bin.")
                     proper_entry = False
 
-            else:
-                try_again((0, 1, 2, 3, 4, 5))
-        if int(red_bat_kit) == 0 and int(blue_bat_kit) == 0 and int(blue_sen_kit) == 0 and int(green_reg_kit) == 0:
-            print("Kit completed... exit")
-            exit()
+        else:
+            try_again((0, 1, 2, 3, 4, 5))
 
     system_tracker["kit"]["red battery"] = red_bat_kit
     system_tracker["kit"]["blue battery"] = blue_bat_kit
