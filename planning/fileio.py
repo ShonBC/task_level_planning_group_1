@@ -51,7 +51,7 @@ def update_problem_states(system_tracker: dict, output_list):
     """Read a list and update some of its contents from user inputs
 
     Args:
-        system_tracker (dict): [description]
+        system_tracker (dict): Dictionary that stores user inputs describing the state of the system. 
     """
     
     agv_is_at_ks_counter = 0
