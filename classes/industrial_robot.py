@@ -121,7 +121,7 @@ class Industrial():
             bin (str): Parts are stored in bins 1-8.
         """
 
-        print(f'{self.name} moves from bin {bin}')
+        print(f'{self.name} moves from {bin}')
 
     def move_from_agv(self, agv: str): 
         """Print the AGV the robot is moving from.
