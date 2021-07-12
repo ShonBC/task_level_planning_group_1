@@ -60,14 +60,14 @@ class Industrial():
         print(f'{self.name} picks up {parttype} from bin {bin}')
 
     def put_down(self, parttype: str, agv: str):
-        """Print the part type put down and the agv it was placed in.
+        """Print the part type put down and the bin it was taken from.
 
         Args:
             parttype (str): Four part types are available in the environment, red_battery, blue_battery, green_regulator, and blue_sensor.
-            agv (str): Automated Guided Vehicle used to transport parts to kitting station.
+            bin (str): Parts are stored in bins 1-8.
         """
 
-        print(f'{self.name} puts down {parttype} from {agv}')
+        print(f'{self.name} puts down {parttype} from bin {bin}')
 
     def attach_gripper(self, gripper: str):
         """Print the gripper the robot has attached.
