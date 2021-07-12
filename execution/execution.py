@@ -1,14 +1,15 @@
 # import gantry_robot as gantry
 # import ground_robot as ground
 
-def execute_plan(moves, gnd_robot, gnt_robot, system_tracker):
-    """[summary]
+def execute_plan(moves: list, gnd_robot, gnt_robot, system_tracker):
+    """Reads the provided list (moves) of robot moves and calls the associated class methods to perform the actions.
+
 
     Args:
-        plan ([type]): [description]
-        gnd_robot ([type]): [description]
-        gnt_robot ([type]): [description]
-        system_tracker ([type]): [description]
+        moves (list): List of robot actions provided from pddl plan.
+        gnd_robot ([type]): Robot of the Ground Robot Class.
+        gnt_robot ([type]): Robot of the Gantry Robot Class.
+        system_tracker (dict): Dictionary that stores user inputs describing the state of the system. 
     """
 
     for command in moves:
