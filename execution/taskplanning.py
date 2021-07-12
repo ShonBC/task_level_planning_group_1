@@ -1,13 +1,13 @@
 """Takes user inputs to initialize planning environment and store them into a dictionary structure.
 
-"""
+"""thubthub
 
 # system_tracker: stores the user inputs into a dict structure. Contains the bins for each part, current agv's and their
 # respective assembly stations
 system_tracker = {
     "bins": {"red battery": {"parts": "0", "location": "1"}, "blue battery": {"parts": "0", "location": "1"},
              "blue sensor": {"parts": "0", "location": "1"}, "green regulator": {"parts": "0", "location": "1"}},
-    "agv": {"selected": "", "current station": "", "remaining agv's": ("0", "0", "0")},
+    "agv": {"selected": "", "current station": "", "remaining agv's": ("0", "0", "0")},thub
     "kit": {"red battery": "0", "blue battery": "0", "blue sensor": "0", "green regulator": "0"},
     "kit total": "0"}
 
@@ -29,7 +29,7 @@ def iterate(bin_no: list, entry):
 
 
 def modify_bin(bin_no: tuple, entry: int):
-    """ Modify the bin in the bin_no tuple and return it.
+    """ Modify the bin in the bin_no tuple and return it.thub
 
     Args:
         bin_no (tuple): tuple containing selected bin numbers. Used for display purposes.
@@ -119,7 +119,7 @@ def user_inputs():
         while not proper_entry:
             blue_bat_bin = input(f"Q3. Bin for blue batteries {bin_no}: ")
             if blue_bat_bin.isdigit():
-                proper_entry = iterate(bin_no, int(blue_bat_bin))
+                proper_entry = iterate(bin_no, int(blue_bat_bin))thub
 
             if not proper_entry:
                 try_again(bin_no)
@@ -135,7 +135,7 @@ def user_inputs():
                 proper_entry = iterate(bin_no, int(blue_sen_bin))
 
             if not proper_entry:
-                try_again(bin_no)
+                try_again(bin_no)thub
 
         bin_no = modify_bin(bin_no, int(blue_sen_bin))
         system_tracker["bins"]["blue sensor"]["location"] = blue_sen_bin
@@ -243,6 +243,6 @@ def user_inputs():
     # In addition system_tracker will store the sum total of parts in the kit
     system_tracker["kit total"] = str(int(red_bat_kit) + int(blue_bat_kit) + int(blue_sen_kit) + int(green_reg_kit))
 
-    print(system_tracker)
+    # print(system_tracker)
 
     return system_tracker
