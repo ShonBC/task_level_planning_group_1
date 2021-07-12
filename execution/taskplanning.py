@@ -1,13 +1,13 @@
 """Takes user inputs to initialize planning environment and store them into a dictionary structure.
 
-"""thubthub
+"""
 
 # system_tracker: stores the user inputs into a dict structure. Contains the bins for each part, current agv's and their
 # respective assembly stations
 system_tracker = {
     "bins": {"red battery": {"parts": "0", "location": "1"}, "blue battery": {"parts": "0", "location": "1"},
              "blue sensor": {"parts": "0", "location": "1"}, "green regulator": {"parts": "0", "location": "1"}},
-    "agv": {"selected": "", "current station": "", "remaining agv's": ("0", "0", "0")},thub
+    "agv": {"selected": "", "current station": "", "remaining agv's": ("0", "0", "0")},
     "kit": {"red battery": "0", "blue battery": "0", "blue sensor": "0", "green regulator": "0"},
     "kit total": "0"}
 
@@ -29,7 +29,7 @@ def iterate(bin_no: list, entry):
 
 
 def modify_bin(bin_no: tuple, entry: int):
-    """ Modify the bin in the bin_no tuple and return it.thub
+    """ Modify the bin in the bin_no tuple and return it.
 
     Args:
         bin_no (tuple): tuple containing selected bin numbers. Used for display purposes.
@@ -119,7 +119,7 @@ def user_inputs():
         while not proper_entry:
             blue_bat_bin = input(f"Q3. Bin for blue batteries {bin_no}: ")
             if blue_bat_bin.isdigit():
-                proper_entry = iterate(bin_no, int(blue_bat_bin))thub
+                proper_entry = iterate(bin_no, int(blue_bat_bin))
 
             if not proper_entry:
                 try_again(bin_no)
@@ -135,7 +135,7 @@ def user_inputs():
                 proper_entry = iterate(bin_no, int(blue_sen_bin))
 
             if not proper_entry:
-                try_again(bin_no)thub
+                try_again(bin_no)
 
         bin_no = modify_bin(bin_no, int(blue_sen_bin))
         system_tracker["bins"]["blue sensor"]["location"] = blue_sen_bin
@@ -203,8 +203,10 @@ def user_inputs():
         if not proper_entry:
             try_again(tuple(stations))
 
-    proper_entry = False
-    while not proper_entry:
+    # Note: Two flags were set. Default is False
+    proper_entry = False        # Check if input entered is integer between 0 and 5.
+    correct_entry = False       # Check if integer of parts in kit is greater than parts in bin.
+    while not proper_entry or not correct_entry:
         # Ask for number of parts currently in kit. Like Q1, user must make four entries.
         try:
             red_bat_kit, blue_bat_kit, blue_sen_kit, green_reg_kit = input(
@@ -213,26 +215,30 @@ def user_inputs():
         except ValueError:
             print('Enter 4 integers.')
             continue
-        # Will scan if all four numbers are digits. If conditions are not met, try again.
-        if red_bat_kit.isdigit() and blue_bat_kit.isdigit() and blue_sen_kit.isdigit() and green_reg_kit.isdigit():
-            # Then check if they are in the range of numbers required. If conditions are not met try again
-            if 0 <= int(red_bat_kit) < 6 and 0 <= int(blue_bat_kit) < 6 and 0 <= int(blue_sen_kit) < 6 and 0 <= \
-                    int(green_reg_kit) < 6:
-                proper_entry = True
-                # If the user mentioned that there will be no parts in the kit, program terminates with Kit completed.
-                if int(red_bat_kit) == 0 and int(blue_bat_kit) == 0 and int(blue_sen_kit) == 0 and int(
-                        green_reg_kit) == 0:
-                    print("Kit completed... exit")
-                    exit()
-                # If the number of parts the user entered exceeds the number of available parts in the bin, try again.
-                # Note: Since the inputs entered are integers from 0 to 5, a different message is printed.
-                if int(red_bat_kit) > int(red_battery) and int(blue_bat_kit) > int(blue_battery) and \
-                        int(blue_sen_kit) > int(blue_sensor) and int(green_reg_kit) > int(green_regulator):
-                    print("Please Try Again. Number of parts entered exceeds number of available parts in bin.")
-                    proper_entry = False
+        # Will scan if all four numbers are integers between 1 and 5. If True, proceed to next step.
+        # Otherwise, try again.
+        if red_bat_kit.isdigit() and blue_bat_kit.isdigit() and blue_sen_kit.isdigit() and green_reg_kit.isdigit() \
+        and 0 <= int(red_bat_kit) < 6 and 0 <= int(blue_bat_kit) < 6 and 0 <= int(blue_sen_kit) < 6 and \
+        0 <= int(green_reg_kit) < 6:
+            proper_entry = True
+            # If the user mentioned that there will be no parts in the kit, program terminates with Kit completed.
+            if int(red_bat_kit) == 0 and int(blue_bat_kit) == 0 and int(blue_sen_kit) == 0 and int(
+                    green_reg_kit) == 0:
+                print("Kit completed... exit")
+                exit()
+            # If the number of parts the user entered for any part exceeds the number of available parts in the bin,
+            # try again.
+            # Note: Since the inputs entered are integers from 0 to 5, a different message is printed.
+            if int(red_bat_kit) > int(red_battery) or int(blue_bat_kit) > int(blue_battery) or \
+                    int(blue_sen_kit) > int(blue_sensor) or int(green_reg_kit) > int(green_regulator):
+                print("Please Try Again. Number of parts entered exceeds number of available parts in bin.")
+            else:
+                correct_entry = True
+        else:
+            proper_entry = False
 
         # Will call try again function if user input enters anything but the required integers.
-        else:
+        if not proper_entry:
             try_again((0, 1, 2, 3, 4, 5))
 
             # Stores the number of parts in the kit to the respective location in system_tracker.
@@ -243,6 +249,5 @@ def user_inputs():
     # In addition system_tracker will store the sum total of parts in the kit
     system_tracker["kit total"] = str(int(red_bat_kit) + int(blue_bat_kit) + int(blue_sen_kit) + int(green_reg_kit))
 
-    # print(system_tracker)
 
     return system_tracker
