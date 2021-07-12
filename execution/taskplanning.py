@@ -29,7 +29,7 @@ def iterate(bin_no: list, entry):
 
 
 def modify_bin(bin_no: tuple, entry: int):
-    """ Modify the bin in the bin_no tuple and return it.
+    """ Modify the bin in the bin_no tuple and return it. Will be used from Q2-Q5.
 
     Args:
         bin_no (tuple): tuple containing selected bin numbers. Used for display purposes.
