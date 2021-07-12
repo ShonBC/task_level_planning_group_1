@@ -51,7 +51,7 @@ def update_problem_states(system_tracker: dict, output_list):
     """Read a list and update some of its contents from user inputs
 
     Args:
-        system_tracker (dict): [description]
+        system_tracker (dict): User_inputs from questions 1-9 
     """
     
     agv_is_at_ks_counter = 0
@@ -90,25 +90,25 @@ def update_problem_states(system_tracker: dict, output_list):
     for i in range(len(output_list)):
         # print("output list", output_list)
         if 'agv-is-at-as' in output_list[i]:
-            output_list[i] = "        (agv-is-at-as "+used_agv+" "+used_agv_station+")\n"
+            output_list[i] = "(agv-is-at-as "+used_agv+" "+used_agv_station+")\n"
         if 'agv-is-not-at-ks' in output_list[i]:
-            output_list[i] = "        (agv-is-not-at-ks " + used_agv + ")\n"
+            output_list[i] = "(agv-is-not-at-ks " + used_agv + ")\n"
         if 'agv-is-at-ks' in output_list[i]:
             if agv_is_at_ks_counter == 0:
-                output_list[i] = "        (agv-is-at-ks " + at_ks[agv_is_at_ks_counter]+")\n"
+                output_list[i] = "(agv-is-at-ks " + at_ks[agv_is_at_ks_counter]+")\n"
             elif agv_is_at_ks_counter == 1:
-                output_list[i] = "        (agv-is-at-ks " + at_ks[agv_is_at_ks_counter]+")\n"
+                output_list[i] = "(agv-is-at-ks " + at_ks[agv_is_at_ks_counter]+")\n"
             elif agv_is_at_ks_counter == 2:
-                output_list[i] = "        (agv-is-at-ks " + at_ks[agv_is_at_ks_counter]+")\n"
+                output_list[i] = "(agv-is-at-ks " + at_ks[agv_is_at_ks_counter]+")\n"
             agv_is_at_ks_counter += 1
         if 'bin-has-parttype' in output_list[i] and 'blue_sensor' in output_list[i]:
-            output_list[i] = "        (bin-has-parttype bin" + blue_sensor_bin + " blue_sensor)\n"
+            output_list[i] = "(bin-has-parttype bin" + blue_sensor_bin + " blue_sensor)\n"
         if 'bin-has-parttype' in output_list[i] and 'green_regulator' in output_list[i]:
-            output_list[i] = '        (bin-has-parttype bin' + green_regulator_bin + ' green_regulator)\n'
+            output_list[i] = '(bin-has-parttype bin' + green_regulator_bin + ' green_regulator)\n'
         if 'bin-has-parttype' in output_list[i] and 'blue_battery' in output_list[i]:
-            output_list[i] = '        (bin-has-parttype bin' + blue_battery_bin + ' blue_battery)\n'
+            output_list[i] = '(bin-has-parttype bin' + blue_battery_bin + ' blue_battery)\n'
         if 'bin-has-parttype' in output_list[i] and 'red_battery' in output_list[i]:
-            output_list[i] = '        (bin-has-parttype bin' + red_battery_bin + ' red_battery)\n'
+            output_list[i] = '(bin-has-parttype bin' + red_battery_bin + ' red_battery)\n'
         if 'parttype-quantity-in-bin' in output_list[i] and 'red_battery' in output_list[i]:
             output_list[i] = '(=(parttype-quantity-in-bin red_battery bin' + red_battery_bin + ')'\
                              + initial_red_battery_quantity + ')\n'
