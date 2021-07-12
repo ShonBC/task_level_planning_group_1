@@ -51,7 +51,7 @@ def update_problem_states(system_tracker: dict, output_list):
     """Read a list and update some of its contents from user inputs
 
     Args:
-        system_tracker (dict): Dictionary that stores user inputs describing the state of the system. 
+        system_tracker (dict): [description]
     """
     
     agv_is_at_ks_counter = 0
@@ -156,13 +156,15 @@ if __name__ == '__main__':
     system_tracker = task.user_inputs()
     # print(system_tracker)
     # absolute path to the PDDL problem file
-    input_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
-    # input_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
+    # input_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
+    input_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/" \
+                      "popf/rwa2-problem.pddl"
     # input_file_path = "/home/luna/Desktop/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
 
     # absolute path to the new PDDL problem file
-    output_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
-    # output_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
+    # output_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
+    output_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/" \
+                       "popf/rwa2-updated-problem.pddl"
     # output_file_path = "/home/luna/Desktop/popf-tif-clp/planner/debug/popf/rwa2-updated-problem.pddl"
     output_list = read_file(input_file_path)
     update_problem_states(system_tracker)
