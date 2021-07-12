@@ -19,21 +19,21 @@ def execute_plan(moves: list, gnd_robot, gnt_robot, system_tracker):
         bin_dict = {'gantry': '', 'ground': ''}
 
         if 'bin1' in command:
-            bin_num = 'bin 1'
+            bin_num = '1'
         elif 'bin2' in command:
-            bin_num = 'bin 2'
+            bin_num = '2'
         elif 'bin3' in command:
-            bin_num = 'bin 3'
+            bin_num = '3'
         elif 'bin4' in command:
-            bin_num = 'bin 4'
+            bin_num = '4'
         elif 'bin5' in command:
-            bin_num = 'bin 5'
+            bin_num = '5'
         elif 'bin6' in command:
-            bin_num = 'bin 6'
+            bin_num = '6'
         elif 'bin7' in command:
-            bin_num = 'bin 7'
+            bin_num = '7'
         elif 'bin8' in command:
-            bin_num = 'bin 8'
+            bin_num = '8'
 
         #Check robot type
         if 'gantry' in command:
