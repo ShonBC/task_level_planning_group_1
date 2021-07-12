@@ -221,7 +221,7 @@ def user_inputs():
         and 0 <= int(red_bat_kit) < 6 and 0 <= int(blue_bat_kit) < 6 and 0 <= int(blue_sen_kit) < 6 and \
         0 <= int(green_reg_kit) < 6:
             proper_entry = True
-            # If the user mentioned that there will be no parts in the kit, program terminates with Kit completed.
+            # If the user mentioned that there will be no parts in the kit, program terminates with Kit completed message.
             if int(red_bat_kit) == 0 and int(blue_bat_kit) == 0 and int(blue_sen_kit) == 0 and int(
                     green_reg_kit) == 0:
                 print("Kit completed... exit")
