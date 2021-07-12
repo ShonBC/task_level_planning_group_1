@@ -5,6 +5,9 @@ from execution import execution as execute
 from classes import gantry_robot as gantry
 from classes import ground_robot as ground
 
+# Absolute Paths to .pddl problem files and root directory of planner. 
+# Please remember to update the paths to your own PDDL problem files and planner before execution. 
+
 # absolute path to the PDDL problem file
 # input_file_path = "/home/brenda/Desktop/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
 input_file_path = "/home/souvik/Documents/ENPM809E/Resources/L8-Task_Level_Planning/popf-tif-clp/planner/debug/popf/rwa2-problem.pddl"
