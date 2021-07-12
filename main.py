@@ -36,6 +36,6 @@ if __name__ == '__main__':
 
     # Run the pddl planner with the updated problem file
     moves = shell.plan(planner_folder)
-    print(moves)
+    # print(moves)
     print('Begin execution: ')
     execute.execute_plan(moves, ground_robot_obj, gantry_robot_obj, system_tracker)
