@@ -40,6 +40,7 @@ def plan(planner_folder):
 if __name__ == '__main__':
 
     # root directory of the planner
+    # Note: Please indicate test file path before execution.
     
     # Shon's Test file path
     planner_folder = '/home/luna/Desktop/popf-tif-clp/planner/debug/popf'
