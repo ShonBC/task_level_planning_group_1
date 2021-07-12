@@ -1,6 +1,9 @@
 """Takes user inputs to initialize planning environment and store them into a dictionary structure.
+
 """
 
+# system_tracker: stores the user inputs into a dict structure. Contains the bins for each part, current agv's and their
+# respective assembly stations
 system_tracker = {
     "bins": {"red battery": {"parts": "0", "location": "1"}, "blue battery": {"parts": "0", "location": "1"},
              "blue sensor": {"parts": "0", "location": "1"}, "green regulator": {"parts": "0", "location": "1"}},
@@ -9,16 +12,15 @@ system_tracker = {
     "kit total": "0"}
 
 
-# Will iterate through list and return whether the entry entered is in the list
 def iterate(bin_no: list, entry):
-    """[summary]
+    """ Will iterate through list and return whether the entry entered is in the list.
 
     Args:
-        bin_no (list): [description]
-        entry ([type]): [description]
+        bin_no (list): list being compared
+        entry ([type]): user input (string)
 
     Returns:
-        [type]: [description]
+        Boolean: return true if entry is in bin_no list.
     """
 
     for elt in bin_no:
@@ -26,16 +28,15 @@ def iterate(bin_no: list, entry):
             return True
 
 
-# Will modify the bin in the bin_no tuple and return it.
 def modify_bin(bin_no: tuple, entry: int):
-    """[summary]
+    """ Modify the bin in the bin_no tuple and return it.
 
     Args:
-        bin_no (tuple): [description]
-        entry (int): [description]
+        bin_no (tuple): tuple containing selected bin numbers. Used for display purposes.
+        entry (int): selected bin entry
 
     Returns:
-        [type]: [description]
+        tuple: modified tuple bin_no
     """
 
     bin_no = list(bin_no)
@@ -44,9 +45,9 @@ def modify_bin(bin_no: tuple, entry: int):
     return bin_no
 
 
-# Will print message reminding user about the proper entries.
 def try_again(*args):
-    """[summary]
+    """
+    Will print message reminding user about the proper entries.
     """
 
     print("Please Try Again!")
@@ -55,19 +56,18 @@ def try_again(*args):
     print('\n')
 
 
-# Program that will ask for user input starts here.
 def user_inputs():
-    """[summary]
+    """ Program that will ask for user input starts here. Will be used for further processing.
 
     Returns:
-        [type]: [description]
+        system_tracker: updated dict data structure which will perform actions based on dictionary.
     """
-    # print("Initial System Tracker")
-    # print(system_tracker)
+
     # part_entry: Flags whether number of parts entered is proper as required in the specifications.
     # If flag is true, the input entry is correct. Otherwise, try again.
     part_entry = False
     while not part_entry:
+        # Four entries are required. User must try again otherwise.
         try:
             red_battery, blue_battery, blue_sensor, green_regulator = input(
                 "Q1. Number of red battery/blue battery/blue "
@@ -75,16 +75,14 @@ def user_inputs():
         except ValueError:
             print('Enter 4 integers.')
             continue
-        print(red_battery.isdigit())
-        print(blue_battery.isdigit())
-        print(blue_sensor.isdigit())
-        print(green_regulator.isdigit())
 
-        # Will check if user enters integer between 0 and 5 and will proceed as follows.
+        # Will check if user enters integer between 0 and 5 and will flag True if all conditions are met.
         if red_battery.isdigit() and blue_battery.isdigit() and blue_sensor.isdigit() and green_regulator.isdigit() and \
                 (0 <= int(red_battery) < 6) and (0 <= int(blue_battery) < 6) and (0 <= int(blue_sensor) < 6) and \
                 (0 <= int(green_regulator) < 6):
             part_entry = True
+
+            # Check if number of parts in all of the bins is 0. If so program terminates.
             if int(red_battery) == 0 and int(blue_battery) == 0 and int(blue_sensor) == 0 and int(green_regulator) == 0:
                 print("Kit has no parts ... exit")
                 exit()
@@ -97,9 +95,11 @@ def user_inputs():
         system_tracker["bins"]["blue sensor"]["parts"] = blue_sensor
         system_tracker["bins"]["green regulator"]["parts"] = green_regulator
 
-    bin_no = (1, 2, 3, 4, 5, 6, 7, 8)  # Tuple created for display purposes shown below.
+    # bin_no used to check which bins to use for each part. Tuple used for display purposes shown below. Will be
+    # updated from Q2-Q5.
+    bin_no = (1, 2, 3, 4, 5, 6, 7, 8)
     if int(red_battery) > 0:  # Question will only be asked if number of red batteries is greater than 0.
-        proper_entry = False
+        proper_entry = False  # proper_entry is similar to parts_entry.
         while not proper_entry:
             red_bat_bin = input(f"Q2. Bin for red batteries {bin_no}: ")
             if red_bat_bin.isdigit() and 1 <= int(red_bat_bin) < 9:
@@ -154,22 +154,27 @@ def user_inputs():
         system_tracker["bins"]["green regulator"]["location"] = green_reg_bin
 
     proper_entry = False
-    agv_location = "agv"  # Used to concatenate with the agv number mentioned in the
+    agv_location = "agv"  # Used to concatenate with the agv number mentioned in Q6.
     while not proper_entry:
         agv_no = input("Q6. AGV to use for kitting [1-4]: ")
         if agv_no.isdigit() and 1 <= int(agv_no) < 5:
             proper_entry = True
-            agv_location += agv_no
+            agv_location += agv_no  # Will append to agv_no which was asked in Q6.
         else:
             try_again((1, 2, 3, 4))
 
+    # Store Selected agv location in selected key of system tracker
     system_tracker["agv"]["selected"] = agv_location
-    agv = ["agv1", "agv2", "agv3", "agv4"]
+    agv = ["agv1", "agv2", "agv3", "agv4"]  # agv creates list of agv locations.
+    # Which will be used to store the remaining agv locations.
     for i in agv:
         if i == agv_location:
             agv.remove(i)
 
-    system_tracker["agv"]["remaining agv's"] = tuple(agv)
+    system_tracker["agv"]["remaining agv's"] = tuple(agv)  # in the remaining agv's key of agv key in system_tracker.
+    # Stations for selected agv are created. First element stores the associated kitting station for the selected agv.
+    # Next two elements store the two assembly stations for the associated agv.
+    # as1 and as2 are used for agv1 and agv2. as3 and as4 are used for agv3 and agv4.
     stations = ["ks" + agv_no]
     if agv_no == "1" or agv_no == "2":
         stations.append("as1")
@@ -177,7 +182,7 @@ def user_inputs():
     else:
         stations.append("as3")
         stations.append("as4")
-
+    # Stations uses a List structure for display purposes as shown in the next question.
     proper_entry = False
     while not proper_entry:
         agv_location = input("Q7. Current location of {} {}: ".format(agv_location, stations))
@@ -186,9 +191,11 @@ def user_inputs():
             try_again(tuple(stations))
         else:
             proper_entry = True
+
+    # Current agv location is stored in the current station key of agv key in system tracker.
     system_tracker["agv"]["current station"] = agv_location
 
-    ks = stations.pop(0)
+    stations.pop(0)  # Remove associated kitting station for next question.
     proper_entry = False
     while not proper_entry:
         as_sta = input(f"Q8. Station to deliver parts {stations}: ")
@@ -198,6 +205,7 @@ def user_inputs():
 
     proper_entry = False
     while not proper_entry:
+        # Ask for number of parts currently in kit. Like Q1, user must make four entries.
         try:
             red_bat_kit, blue_bat_kit, blue_sen_kit, green_reg_kit = input(
                 "Q9. Number of red battery/blue battery/blue "
@@ -205,35 +213,36 @@ def user_inputs():
         except ValueError:
             print('Enter 4 integers.')
             continue
-
+        # Will scan if all four numbers are digits. If conditions are not met, try again.
         if red_bat_kit.isdigit() and blue_bat_kit.isdigit() and blue_sen_kit.isdigit() and green_reg_kit.isdigit():
+            # Then check if they are in the range of numbers required. If conditions are not met try again
             if 0 <= int(red_bat_kit) < 6 and 0 <= int(blue_bat_kit) < 6 and 0 <= int(blue_sen_kit) < 6 and 0 <= \
                     int(green_reg_kit) < 6:
                 proper_entry = True
+                # If the user mentioned that there will be no parts in the kit, program terminates with Kit completed.
                 if int(red_bat_kit) == 0 and int(blue_bat_kit) == 0 and int(blue_sen_kit) == 0 and int(
                         green_reg_kit) == 0:
                     print("Kit completed... exit")
                     exit()
-                if int(red_bat_kit) <= int(red_battery) and int(blue_bat_kit) <= int(blue_battery) and \
-                        int(blue_sen_kit) <= int(blue_sensor) and int(green_reg_kit) <= int(green_regulator):
-                    pass
-                else:
+                # If the number of parts the user entered exceeds the number of available parts in the bin, try again.
+                # Note: Since the inputs entered are integers from 0 to 5, a different message is printed.
+                if int(red_bat_kit) > int(red_battery) and int(blue_bat_kit) > int(blue_battery) and \
+                        int(blue_sen_kit) > int(blue_sensor) and int(green_reg_kit) > int(green_regulator):
                     print("Please Try Again. Number of parts entered exceeds number of available parts in bin.")
                     proper_entry = False
 
+        # Will call try again function if user input enters anything but the required integers.
         else:
             try_again((0, 1, 2, 3, 4, 5))
 
+            # Stores the number of parts in the kit to the respective location in system_tracker.
     system_tracker["kit"]["red battery"] = red_bat_kit
     system_tracker["kit"]["blue battery"] = blue_bat_kit
     system_tracker["kit"]["blue sensor"] = blue_sen_kit
     system_tracker["kit"]["green regulator"] = green_reg_kit
+    # In addition system_tracker will store the sum total of parts in the kit
     system_tracker["kit total"] = str(int(red_bat_kit) + int(blue_bat_kit) + int(blue_sen_kit) + int(green_reg_kit))
 
-    # Add in the call to fileio.py to set user inputs from list into .pddl files.
-    # gantry.main()
-    # ground.main()
-    # industrial_robot.main()
-    # print("After Updating System Tracker")
-    # print(system_tracker)
+    print(system_tracker)
+
     return system_tracker
